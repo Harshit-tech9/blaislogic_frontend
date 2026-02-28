@@ -1,6 +1,6 @@
 # BlaiseLogic Website
 
-Marketing site for BlaiseLogic — parent company for MetricAI, AIAdFactory, and custom AI solutions.
+Marketing site for BlaiseLogic parent company for MetricAI, AIAdFactory, and custom AI solutions.
 
 ## Stack
 
