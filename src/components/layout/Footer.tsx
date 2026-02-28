@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "../ui/Icon";
 import { SITE, FOOTER_SECTIONS, COPYRIGHT_YEAR } from "../../config/site";
 
 const FOOTER_LINK_CLASSES =
@@ -16,18 +15,25 @@ export const Footer: React.FC = () => {
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-0">
         <div className="flex flex-col gap-6 max-w-xs">
-          <div className="flex items-center gap-2">
-            <Icon name="all_inclusive" className="text-2xl" aria-hidden />
-            <span className="text-lg font-bold tracking-tight text-primary dark:text-white">
-              {SITE.name}
-            </span>
-          </div>
+          <a href="/" className="inline-block" aria-label={`${SITE.name} home`}>
+            <img
+              src={SITE.logoPath}
+              alt={SITE.name}
+              className="h-9 w-auto object-contain md:h-10"
+              width={160}
+              height={40}
+            />
+          </a>
           <p className="text-sm text-text-secondary dark:text-gray-500 font-light">
             {SITE.description}
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-12 md:gap-24" role="navigation" aria-label="Footer navigation">
+        <div
+          className="flex flex-wrap gap-12 md:gap-24"
+          role="navigation"
+          aria-label="Footer navigation"
+        >
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="flex flex-col gap-4">
               <h4 className={FOOTER_HEADING_CLASSES}>{section.title}</h4>
@@ -46,10 +52,12 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="max-w-[1400px] mx-auto mt-20 pt-8 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-secondary dark:text-gray-600">
-        <p>© {COPYRIGHT_YEAR} {SITE.name} Inc. All rights reserved.</p>
+        <p>
+          © {COPYRIGHT_YEAR} {SITE.name} Inc. All rights reserved.
+        </p>
         <div className="flex gap-6">
           <a
-            href="https://twitter.com"
+            href="https://x.com/blaiselogic"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary dark:hover:text-white transition-colors"
@@ -57,7 +65,7 @@ export const Footer: React.FC = () => {
             Twitter
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/blaiselogic-technology/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary dark:hover:text-white transition-colors"

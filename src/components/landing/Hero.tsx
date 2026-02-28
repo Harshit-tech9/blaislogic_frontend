@@ -1,7 +1,10 @@
 import React from "react";
-import { Button } from "../ui/Button";
 import { Container } from "../layout/Container";
 import { SITE } from "../../config/site";
+import { cn } from "../../lib/utils";
+
+const CTA_CLASSES =
+  "inline-flex items-center justify-center rounded-full font-semibold tracking-wide transition-all duration-200 h-14 px-10 text-base w-full sm:w-auto bg-primary text-white dark:bg-white dark:text-primary hover:scale-105 shadow-xl shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
 
 export const Hero: React.FC = () => {
   return (
@@ -20,13 +23,13 @@ export const Hero: React.FC = () => {
           {SITE.description}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 md:mt-12 lg:mt-4 w-full">
-          <Button size="lg" className="w-full sm:w-auto">
-            Get Started
-          </Button>
-          <Button variant="outline" size="lg" className="w-full sm:w-auto">
+        <div className="flex justify-center mt-8 md:mt-12 lg:mt-4 w-full">
+          <a
+            href="#products"
+            className={cn(CTA_CLASSES)}
+          >
             Explore Products
-          </Button>
+          </a>
         </div>
       </Container>
     </section>

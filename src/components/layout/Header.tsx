@@ -13,11 +13,16 @@ export const Header: React.FC = () => {
       <div className="flex items-center justify-between px-6 py-6 md:px-12 md:py-8">
         <a
           href="/"
-          className="flex items-center gap-2 text-xl md:text-2xl font-bold tracking-tight text-primary dark:text-white hover:opacity-90 transition-opacity"
+          className="inline-flex items-center hover:opacity-90 transition-opacity"
           aria-label={`${SITE.name} home`}
         >
-          <Icon name="all_inclusive" className="text-3xl" aria-hidden />
-          {SITE.name}
+          <img
+            src={SITE.logoPath}
+            alt={SITE.name}
+            className="h-10 w-auto object-contain md:h-12"
+            width={240}
+            height={60}
+          />
         </a>
 
         <nav
