@@ -7,12 +7,14 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-background-light dark:bg-background-dark border-b border-transparent transition-all duration-300"
+      className="navbar-enter fixed top-0 left-0 right-0 z-50 bg-background-light dark:bg-background-dark border-b border-transparent transition-all duration-300"
       role="banner"
     >
       <div className="flex items-center justify-between px-6 py-6 md:px-12 md:py-8">
         <a
           href="/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center hover:opacity-90 transition-opacity"
           aria-label={`${SITE.name} home`}
         >
@@ -33,7 +35,9 @@ export const Header: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:opacity-60 transition-opacity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-sm font-medium hover:opacity-60 transition-opacity"
             >
               {link.name}
             </a>
@@ -66,7 +70,9 @@ export const Header: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-base font-medium hover:opacity-60 transition-opacity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-base font-medium hover:opacity-60 transition-opacity"
               onClick={() => setIsMenuOpen(false)}
             >
               {link.name}

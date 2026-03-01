@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "../../lib/utils";
 import { SITE, FOOTER_SECTIONS, COPYRIGHT_YEAR } from "../../config/site";
 
 const FOOTER_LINK_CLASSES =
@@ -15,7 +16,7 @@ export const Footer: React.FC = () => {
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-0">
         <div className="flex flex-col gap-6 max-w-xs">
-          <a href="/" className="inline-block" aria-label={`${SITE.name} home`}>
+          <a href="/" target="_blank" rel="noopener noreferrer" className="inline-block" aria-label={`${SITE.name} home`}>
             <img
               src={SITE.logoPath}
               alt={SITE.name}
@@ -40,7 +41,7 @@ export const Footer: React.FC = () => {
               <ul className="flex flex-col gap-4 list-none p-0 m-0">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className={FOOTER_LINK_CLASSES}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className={cn("link-underline", FOOTER_LINK_CLASSES)}>
                       {link.label}
                     </a>
                   </li>
