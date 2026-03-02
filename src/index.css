@@ -43,6 +43,16 @@
   text-wrap: balance;
 }
 
+/* Logo: B&W by default, color on hover */
+.logo-hover-color {
+  filter: grayscale(100%);
+  transition: filter 0.25s ease;
+}
+
+a:hover .logo-hover-color {
+  filter: grayscale(0%);
+}
+
 /* MetricAI product card: dark background + purple glow on hover */
 .metric-ai-card:hover {
   background-color: #0a0a0a;

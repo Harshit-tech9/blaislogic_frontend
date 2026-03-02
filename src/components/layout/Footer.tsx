@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
             <img
               src={SITE.logoPath}
               alt={SITE.name}
-              className="h-9 w-auto object-contain md:h-10"
+              className="logo-hover-color h-9 w-auto object-contain md:h-10"
               width={160}
               height={40}
             />

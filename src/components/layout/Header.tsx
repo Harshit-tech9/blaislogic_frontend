@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
           <img
             src={SITE.logoPath}
             alt={SITE.name}
-            className="h-10 w-auto object-contain md:h-12"
+            className="logo-hover-color h-10 w-auto object-contain md:h-12"
             width={240}
             height={60}
           />
