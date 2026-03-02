@@ -13,55 +13,79 @@ export const Infrastructure: React.FC = () => {
       aria-labelledby="infrastructure-heading"
     >
       <Container>
-        <p id="infrastructure-heading" className={cn(EYEBROW_CLASSES, "mb-16 md:mb-24")}>
+        <p
+          id="infrastructure-heading"
+          className={cn("stagger-1", EYEBROW_CLASSES, "mb-16 md:mb-24")}
+        >
           Infrastructure Components
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x divide-black/10 dark:divide-white/10">
+        <div className="stagger-2 grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x divide-black/10 dark:divide-white/10">
           {INFRASTRUCTURE_FEATURES.map((feature, index) => {
             const href = feature.siteUrl || "#contact";
-            const isExternal = Boolean(feature.siteUrl);
+            const isMetricAI = feature.title === "MetricAI";
             return (
               <a
                 key={feature.title}
                 href={href}
-                {...(isExternal && {
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                })}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={cn(
-                  "flex flex-col gap-4 py-8 md:py-0 border-black/5 dark:border-white/5 group min-w-0 no-underline text-inherit hover:opacity-95 transition-opacity",
+                  "flex flex-col gap-4 px-6 py-8 md:px-8 md:py-10 border-black/5 dark:border-white/5 group min-w-0 no-underline text-inherit transition-[background-color,box-shadow,color,transform] duration-300 ease-in-out text-center hover:-translate-y-0.5",
                   {
-                    "md:pr-12": index === 0,
-                    "md:px-6 border-t md:border-t-0": index === 1,
-                    "md:pl-12 border-t md:border-t-0": index === 2,
+                    "border-t md:border-t-0": index !== 0,
+                    "metric-ai-card md:rounded-xl overflow-hidden": isMetricAI,
                   },
+                  !isMetricAI && "hover:opacity-95",
                 )}
               >
-                <div
-                  className={cn(
-                    "flex items-center mb-2 relative",
-                    index === 1
-                      ? "justify-between md:justify-center lg:justify-between"
-                      : "justify-between",
-                  )}
-                >
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:opacity-70 transition-opacity text-primary dark:text-white">
-                    {feature.title}
+                <div className="flex items-center justify-center mb-2 relative">
+                  <h3
+                    className={cn(
+                      "text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 ease-in-out text-primary dark:text-white",
+                      !isMetricAI && "group-hover:opacity-70",
+                    )}
+                  >
+                    {isMetricAI ? (
+                      <>
+                        <span className="transition-colors duration-300 ease-in-out group-hover:text-white">
+                          Metric
+                        </span>
+                        <span className="transition-colors duration-300 ease-in-out group-hover:text-metric-ai">
+                          AI
+                        </span>
+                      </>
+                    ) : (
+                      feature.title
+                    )}
                   </h3>
                   <Icon
                     name="arrow_forward"
                     className={cn(
-                      "transition-opacity -rotate-45 opacity-0 group-hover:opacity-100 text-primary dark:text-white",
-                      index === 1 && "md:absolute md:right-0 lg:static",
+                      "absolute right-0 top-0 transition-all duration-300 ease-in-out -rotate-45 opacity-0 group-hover:opacity-100 text-primary dark:text-white",
+                      isMetricAI && "group-hover:text-white",
                     )}
                     aria-hidden
                   />
                 </div>
-                <p className="text-base md:text-lg text-text-secondary dark:text-gray-400 font-light leading-relaxed">
+                <p
+                  className={cn(
+                    "text-base md:text-lg font-light leading-relaxed transition-colors duration-300 ease-in-out",
+                    isMetricAI
+                      ? "text-text-secondary dark:text-gray-400 group-hover:text-white"
+                      : "text-text-secondary dark:text-gray-400",
+                  )}
+                >
                   {feature.description}
                 </p>
-                <span className="mt-auto pt-6 opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold underline underline-offset-4 text-primary dark:text-white">
+                <span
+                  className={cn(
+                    "mt-auto pt-6 text-sm font-semibold underline underline-offset-4 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100",
+                    isMetricAI
+                      ? "text-primary dark:text-white group-hover:text-white"
+                      : "text-primary dark:text-white",
+                  )}
+                >
                   {feature.buttonLabel}
                 </span>
               </a>

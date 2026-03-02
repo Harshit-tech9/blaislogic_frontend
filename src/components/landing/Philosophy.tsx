@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from "../ui/Icon";
 import { Section } from "../layout/Section";
 import { Container } from "../layout/Container";
+import { cn } from "../../lib/utils";
 import { SECTION_HEADING_CLASSES, SECTION_BODY_CLASSES } from "../../constants/layout";
 
 export const Philosophy: React.FC = () => {
@@ -10,13 +11,13 @@ export const Philosophy: React.FC = () => {
       <Container width="narrow" className="text-center flex flex-col gap-6 md:gap-8">
         <Icon
           name="grid_view"
-          className="text-4xl font-extralight text-primary/30 dark:text-white/30 mb-4 mx-auto"
+          className="stagger-1 text-4xl font-extralight text-primary/30 dark:text-white/30 mb-4 mx-auto"
           aria-hidden
         />
-        <h2 className={SECTION_HEADING_CLASSES}>
+        <h2 className={cn("stagger-2", SECTION_HEADING_CLASSES)}>
           Intelligence needs structure.
         </h2>
-        <p className={SECTION_BODY_CLASSES}>
+        <p className={cn("stagger-3", SECTION_BODY_CLASSES)}>
           We believe that true intelligence is not just about raw power, but
           about the architecture that sustains it. Blaiselogic provides the
           foundational grid upon which the next generation of AI is built.

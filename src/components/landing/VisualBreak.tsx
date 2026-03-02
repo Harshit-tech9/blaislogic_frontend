@@ -17,7 +17,7 @@ export const VisualBreak: React.FC = () => {
         className="w-full h-full object-cover opacity-60 grayscale"
         fetchPriority="low"
       />
-      <div className="absolute inset-0 flex items-center justify-center p-6">
+      <div className="stagger-1 absolute inset-0 flex items-center justify-center p-6">
         <h2
           id="visual-break-heading"
           className="text-white text-4xl md:text-6xl font-black tracking-tighter text-center max-w-4xl leading-tight"
