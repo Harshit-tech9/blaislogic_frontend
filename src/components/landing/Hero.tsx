@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 const CTA_CLASSES =
   "inline-flex items-center justify-center rounded-full font-semibold tracking-wide transition-all duration-200 h-14 px-10 text-base w-full sm:w-auto bg-primary text-white dark:bg-white dark:text-primary hover:scale-105 shadow-xl shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
 
-const TYPEWRITER_MS_PER_CHAR = 95;
+const TYPEWRITER_MS_PER_CHAR = 85;
 
 const NAVBAR_ANIMATION_MS = 900;
 
@@ -23,10 +23,14 @@ export const Hero: React.FC = () => {
 
   useEffect(() => {
     if (!startTyping || visibleLength >= tagline.length) {
-      if (startTyping && visibleLength >= tagline.length) setTypingComplete(true);
+      if (startTyping && visibleLength >= tagline.length)
+        setTypingComplete(true);
       return;
     }
-    const t = setTimeout(() => setVisibleLength((n) => n + 1), TYPEWRITER_MS_PER_CHAR);
+    const t = setTimeout(
+      () => setVisibleLength((n) => n + 1),
+      TYPEWRITER_MS_PER_CHAR,
+    );
     return () => clearTimeout(t);
   }, [startTyping, visibleLength, tagline.length]);
 
@@ -55,7 +59,12 @@ export const Hero: React.FC = () => {
           </p>
 
           <div className="flex justify-center mt-8 md:mt-12 lg:mt-4 w-full">
-            <a href="#products" target="_blank" rel="noopener noreferrer" className={cn(CTA_CLASSES)}>
+            <a
+              href="#products"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(CTA_CLASSES)}
+            >
               Explore Products
             </a>
           </div>

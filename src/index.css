@@ -2,7 +2,7 @@
 
 @theme {
   --color-primary: #121212;
-  --color-metric-ai: #6124C5;
+  --color-metric-ai: #6124c5;
   --color-background-light: #ffffff;
   --color-background-dark: #0a0a0a;
   --color-text-primary: #111111;
@@ -22,7 +22,9 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--color-background-light);
     color: var(--color-text-primary);
-    transition: color 300ms, background-color 300ms;
+    transition:
+      color 300ms,
+      background-color 300ms;
   }
 }
 
@@ -53,10 +55,14 @@ a:hover .logo-hover-color {
   filter: grayscale(0%);
 }
 
-/* MetricAI product card: dark background + purple glow on hover */
-.metric-ai-card:hover {
-  background-color: #0a0a0a;
-  box-shadow: 0 0 0 1px rgba(97, 36, 197, 0.5), 0 0 32px rgba(97, 36, 197, 0.3);
+/* MetricAI product card: dark background + purple glow on hover (lg+ only; no hover on sm/md/touch) */
+@media (min-width: 1024px) {
+  .metric-ai-card:hover {
+    background-color: #0a0a0a;
+    box-shadow:
+      0 0 0 1px rgba(97, 36, 197, 0.5),
+      0 0 32px rgba(97, 36, 197, 0.3);
+  }
 }
 
 /* Page load: navbar entrance */
@@ -95,7 +101,9 @@ a:hover .logo-hover-color {
 .scroll-fade-in {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
 }
 
 .scroll-fade-in.scroll-fade-in-visible {
@@ -109,7 +117,9 @@ a:hover .logo-hover-color {
 .scroll-fade-in .stagger-3 {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
 }
 
 .scroll-fade-in.scroll-fade-in-visible .stagger-1,
@@ -119,9 +129,15 @@ a:hover .logo-hover-color {
   transform: translateY(0);
 }
 
-.scroll-fade-in.scroll-fade-in-visible .stagger-1 { transition-delay: 0ms; }
-.scroll-fade-in.scroll-fade-in-visible .stagger-2 { transition-delay: 70ms; }
-.scroll-fade-in.scroll-fade-in-visible .stagger-3 { transition-delay: 140ms; }
+.scroll-fade-in.scroll-fade-in-visible .stagger-1 {
+  transition-delay: 0ms;
+}
+.scroll-fade-in.scroll-fade-in-visible .stagger-2 {
+  transition-delay: 70ms;
+}
+.scroll-fade-in.scroll-fade-in-visible .stagger-3 {
+  transition-delay: 140ms;
+}
 
 /* Link hover: underline grows from left */
 .link-underline {

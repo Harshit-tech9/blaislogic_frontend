@@ -21,7 +21,8 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { name: "Products", href: "#products" },
-  { name: "Company", href: "#company" },
+  { name: "About us", href: "#company" },
+  { name: "Blogs", href: "#blogs" },
 ] as const;
 
 /** Infrastructure section feature cards (single source for product names + descriptions + product site links) */

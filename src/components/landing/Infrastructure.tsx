@@ -31,27 +31,27 @@ export const Infrastructure: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "flex flex-col gap-4 px-6 py-8 md:px-8 md:py-10 border-black/5 dark:border-white/5 group min-w-0 no-underline text-inherit transition-[background-color,box-shadow,color,transform] duration-300 ease-in-out text-center hover:-translate-y-0.5",
+                  "flex flex-col gap-4 px-6 py-8 md:px-8 md:py-10 border-black/5 dark:border-white/5 group min-w-0 no-underline text-inherit transition-[background-color,box-shadow,color,transform] duration-300 ease-in-out text-center lg:hover:-translate-y-0.5",
                   {
                     "border-t md:border-t-0": index !== 0,
                     "metric-ai-card md:rounded-xl overflow-hidden": isMetricAI,
                   },
-                  !isMetricAI && "hover:opacity-95",
+                  !isMetricAI && "lg:hover:opacity-95",
                 )}
               >
                 <div className="flex items-center justify-center mb-2 relative">
                   <h3
                     className={cn(
                       "text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 ease-in-out text-primary dark:text-white",
-                      !isMetricAI && "group-hover:opacity-70",
+                      !isMetricAI && "lg:group-hover:opacity-70",
                     )}
                   >
                     {isMetricAI ? (
                       <>
-                        <span className="transition-colors duration-300 ease-in-out group-hover:text-white">
+                        <span className="transition-colors duration-300 ease-in-out lg:group-hover:text-white">
                           Metric
                         </span>
-                        <span className="transition-colors duration-300 ease-in-out group-hover:text-metric-ai">
+                        <span className="transition-colors duration-300 ease-in-out lg:group-hover:text-metric-ai">
                           AI
                         </span>
                       </>
@@ -62,8 +62,8 @@ export const Infrastructure: React.FC = () => {
                   <Icon
                     name="arrow_forward"
                     className={cn(
-                      "absolute right-0 top-0 transition-all duration-300 ease-in-out -rotate-45 opacity-0 group-hover:opacity-100 text-primary dark:text-white",
-                      isMetricAI && "group-hover:text-white",
+                      "absolute right-0 top-0 transition-all duration-300 ease-in-out -rotate-45 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 text-primary dark:text-white",
+                      isMetricAI && "lg:group-hover:text-white",
                     )}
                     aria-hidden
                   />
@@ -72,7 +72,7 @@ export const Infrastructure: React.FC = () => {
                   className={cn(
                     "text-base md:text-lg font-light leading-relaxed transition-colors duration-300 ease-in-out",
                     isMetricAI
-                      ? "text-text-secondary dark:text-gray-400 group-hover:text-white"
+                      ? "text-text-secondary dark:text-gray-400 lg:group-hover:text-white"
                       : "text-text-secondary dark:text-gray-400",
                   )}
                 >
@@ -80,9 +80,9 @@ export const Infrastructure: React.FC = () => {
                 </p>
                 <span
                   className={cn(
-                    "mt-auto pt-6 text-sm font-semibold underline underline-offset-4 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100",
+                    "mt-auto pt-6 text-sm font-semibold underline underline-offset-4 transition-all duration-300 ease-in-out opacity-100 lg:opacity-0 lg:group-hover:opacity-100",
                     isMetricAI
-                      ? "text-primary dark:text-white group-hover:text-white"
+                      ? "text-primary dark:text-white lg:group-hover:text-white"
                       : "text-primary dark:text-white",
                   )}
                 >
