@@ -24,6 +24,14 @@ export const EYEBROW_CLASSES =
 export const SECTION_HEADING_CLASSES =
   "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-white leading-tight";
 
+/** Large display heading (hero / CTA) */
+export const DISPLAY_HEADING_CLASSES =
+  "text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-primary dark:text-white leading-[0.9]";
+
 /** Body text in sections */
 export const SECTION_BODY_CLASSES =
   "text-lg md:text-xl font-light leading-relaxed text-text-secondary dark:text-gray-300";
+
+/** Primary CTA link/button (e.g. Hero “Explore Products”) */
+export const PRIMARY_CTA_CLASSES =
+  "inline-flex items-center justify-center rounded-full font-semibold tracking-wide transition-all duration-200 h-14 px-10 text-base w-full sm:w-auto bg-primary text-white dark:bg-white dark:text-primary hover:scale-105 shadow-xl shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";

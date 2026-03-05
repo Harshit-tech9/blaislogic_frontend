@@ -1,32 +1,20 @@
 import React from "react";
 import { Hero } from "../components/landing/Hero";
+import { Products } from "../components/landing/Products";
 import { Philosophy } from "../components/landing/Philosophy";
-import { Infrastructure } from "../components/landing/Infrastructure";
-import { VisualBreak } from "../components/landing/VisualBreak";
 import { CTA } from "../components/landing/CTA";
-import { ScrollFadeIn } from "../components/ui/ScrollFadeIn";
+import { ScrollFadeInSection } from "../components/ui/ScrollFadeInSection";
 
 /**
- * Home page: assembles landing sections (Hero, Philosophy, Infrastructure, VisualBreak, CTA) in order.
+ * Home page: Hero, Products (2nd), Philosophy, CTA.
  */
 export const HomePage: React.FC = () => {
   return (
-    <>
-      <ScrollFadeIn>
-        <Hero />
-      </ScrollFadeIn>
-      <ScrollFadeIn>
-        <Philosophy />
-      </ScrollFadeIn>
-      <ScrollFadeIn>
-        <Infrastructure />
-      </ScrollFadeIn>
-      <ScrollFadeIn>
-        <VisualBreak />
-      </ScrollFadeIn>
-      <ScrollFadeIn>
-        <CTA />
-      </ScrollFadeIn>
-    </>
+    <ScrollFadeInSection>
+      <Hero />
+      <Products />
+      <Philosophy />
+      <CTA />
+    </ScrollFadeInSection>
   );
 };

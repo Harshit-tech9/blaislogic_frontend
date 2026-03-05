@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Container } from "../layout/Container";
 import { SITE } from "../../config/site";
 import { cn } from "../../lib/utils";
-
-const CTA_CLASSES =
-  "inline-flex items-center justify-center rounded-full font-semibold tracking-wide transition-all duration-200 h-14 px-10 text-base w-full sm:w-auto bg-primary text-white dark:bg-white dark:text-primary hover:scale-105 shadow-xl shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
+import { PRIMARY_CTA_CLASSES } from "../../constants/layout";
 
 const TYPEWRITER_MS_PER_CHAR = 85;
+const PAUSE_BETWEEN_LINES_MS = 400;
 
 const NAVBAR_ANIMATION_MS = 900;
 
+const HERO_LINE_1 = "Less AI noise.";
+const HERO_LINE_2 = "More AI output.";
+
 export const Hero: React.FC = () => {
-  const tagline = SITE.tagline;
   const [startTyping, setStartTyping] = useState(false);
-  const [visibleLength, setVisibleLength] = useState(0);
+  const [visibleLine1, setVisibleLine1] = useState(0);
+  const [visibleLine2, setVisibleLine2] = useState(0);
   const [typingComplete, setTypingComplete] = useState(false);
 
   useEffect(() => {
@@ -22,30 +24,42 @@ export const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!startTyping || visibleLength >= tagline.length) {
-      if (startTyping && visibleLength >= tagline.length)
-        setTypingComplete(true);
+    if (!startTyping) return;
+    if (visibleLine1 < HERO_LINE_1.length) {
+      const t = setTimeout(
+        () => setVisibleLine1((n) => n + 1),
+        TYPEWRITER_MS_PER_CHAR,
+      );
+      return () => clearTimeout(t);
+    }
+    if (visibleLine2 === 0) {
+      const pause = setTimeout(() => setVisibleLine2(1), PAUSE_BETWEEN_LINES_MS);
+      return () => clearTimeout(pause);
+    }
+    if (visibleLine2 >= HERO_LINE_2.length) {
+      setTypingComplete(true);
       return;
     }
     const t = setTimeout(
-      () => setVisibleLength((n) => n + 1),
+      () => setVisibleLine2((n) => n + 1),
       TYPEWRITER_MS_PER_CHAR,
     );
     return () => clearTimeout(t);
-  }, [startTyping, visibleLength, tagline.length]);
+  }, [startTyping, visibleLine1, visibleLine2]);
 
   return (
     <section
-      className="px-6 md:px-12 pb-20 pt-10 md:pt-16 lg:pb-32 flex flex-col items-center justify-center min-h-[70vh] text-center"
+      className="px-6 md:px-12 pb-20 pt-10 md:pt-16 flex flex-col items-center justify-center min-h-[70vh] text-center"
       aria-labelledby="hero-heading"
     >
       <Container width="wide" className="flex flex-col gap-8 md:gap-10">
         <h1
           id="hero-heading"
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] text-balance text-primary dark:text-white min-h-[1.2em]"
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] text-primary dark:text-white min-h-[2.4em] flex flex-col items-center"
           aria-live="polite"
         >
-          {tagline.slice(0, visibleLength)}
+          <span className="block text-balance">{HERO_LINE_1.slice(0, visibleLine1)}</span>
+          <span className="block text-balance">{HERO_LINE_2.slice(0, visibleLine2)}</span>
         </h1>
         <div
           className={cn(
@@ -63,7 +77,7 @@ export const Hero: React.FC = () => {
               href="#products"
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(CTA_CLASSES)}
+              className={cn(PRIMARY_CTA_CLASSES)}
             >
               Explore Products
             </a>
