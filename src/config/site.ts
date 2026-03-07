@@ -21,7 +21,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { name: "Products", href: "#products" },
-  { name: "About", href: "#company" },
+  { name: "About us", href: "#company" },
   { name: "Blogs", href: "#blogs" },
 ] as const;
 
@@ -53,7 +53,7 @@ export const INFRASTRUCTURE_FEATURES = [
 
 export const FOOTER_SECTIONS = [
   {
-    title: "Platform",
+    title: "Products",
     links: [
       { label: "MetricAI", href: "https://metricai.co.in/" },
       { label: "AIAdFactory", href: "#products" },
@@ -61,18 +61,7 @@ export const FOOTER_SECTIONS = [
   },
   {
     title: "Company",
-    links: [
-      { label: "About", href: "#about" },
-      { label: "Careers", href: "#careers" },
-      { label: "Contact", href: "#contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy", href: "#privacy" },
-      { label: "Terms", href: "#terms" },
-    ],
+    links: [{ label: "About us", href: "#company" }],
   },
 ] as const;
 

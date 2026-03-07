@@ -79,22 +79,6 @@ a:hover .logo-hover-color {
   }
 }
 
-/* Page load: navbar entrance */
-@keyframes navbar-enter {
-  from {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.navbar-enter {
-  animation: navbar-enter 0.9s ease-out forwards;
-}
-
 /* Hero subtext fade-in after typewriter completes */
 @keyframes hero-content-fade-in {
   from {

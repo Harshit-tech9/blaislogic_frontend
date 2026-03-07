@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-0">
         <div className="flex flex-col gap-6 max-w-xs">
-          <a href="/" target="_blank" rel="noopener noreferrer" className="inline-block" aria-label={`${SITE.name} home`}>
+          <a href="/" className="inline-block" aria-label={`${SITE.name} home`}>
             <img
               src={SITE.logoPath}
               alt={SITE.name}
@@ -41,7 +41,13 @@ export const Footer: React.FC = () => {
               <ul className="flex flex-col gap-4 list-none p-0 m-0">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" className={cn("link-underline", FOOTER_LINK_CLASSES)}>
+                    <a
+                      href={link.href}
+                      {...(link.href.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className={cn("link-underline", FOOTER_LINK_CLASSES)}
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -56,14 +62,14 @@ export const Footer: React.FC = () => {
         <p>
           © {COPYRIGHT_YEAR} {SITE.name} Inc. All rights reserved.
         </p>
-        <div className="flex gap-6">
+        <div className="flex flex-wrap items-center gap-6">
           <a
             href="https://x.com/blaiselogic"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary dark:hover:text-white transition-colors"
           >
-            Twitter
+            X
           </a>
           <a
             href="https://www.linkedin.com/company/blaiselogic-technology/"
@@ -72,6 +78,12 @@ export const Footer: React.FC = () => {
             className="hover:text-primary dark:hover:text-white transition-colors"
           >
             LinkedIn
+          </a>
+          <a
+            href="mailto:foundersoffice@blaiselogic.com"
+            className="hover:text-primary dark:hover:text-white transition-colors"
+          >
+            Mail
           </a>
         </div>
       </div>

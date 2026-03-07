@@ -3,7 +3,7 @@ import { Icon } from "../ui/Icon";
 import { Section } from "../layout/Section";
 import { Container } from "../layout/Container";
 import { cn } from "../../lib/utils";
-import { AnimatedText } from "../ui/AnimatedUnderlineTextOne";
+import { AnimatedUnderline } from "../ui/AnimatedUnderline";
 import {
   SECTION_HEADING_CLASSES,
   SECTION_BODY_CLASSES,
@@ -21,7 +21,7 @@ export const Philosophy: React.FC = () => {
           className="stagger-1 text-4xl font-extralight text-primary/30 dark:text-white/30 mb-4 mx-auto"
           aria-hidden
         />
-        <AnimatedText
+        <AnimatedUnderline
           text="Intelligence needs structure."
           className="stagger-2"
           textClassName={cn(SECTION_HEADING_CLASSES)}

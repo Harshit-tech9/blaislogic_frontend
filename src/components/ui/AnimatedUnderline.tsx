@@ -4,7 +4,8 @@ import { motion, useInView } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-interface AnimatedTextProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedUnderlineProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   textClassName?: string;
   underlineClassName?: string;
@@ -13,7 +14,10 @@ interface AnimatedTextProps extends React.HTMLAttributes<HTMLDivElement> {
   underlineDuration?: number;
 }
 
-const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
+const AnimatedUnderline = React.forwardRef<
+  HTMLDivElement,
+  AnimatedUnderlineProps
+>(
   (
     {
       text,
@@ -55,7 +59,10 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
     return (
       <div
         ref={setRef}
-        className={cn("flex flex-col items-center justify-center gap-2", props.className)}
+        className={cn(
+          "flex flex-col items-center justify-center gap-2",
+          props.className
+        )}
       >
         <div className="relative">
           <motion.h1
@@ -96,6 +103,6 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
   }
 );
 
-AnimatedText.displayName = "AnimatedText";
+AnimatedUnderline.displayName = "AnimatedUnderline";
 
-export { AnimatedText };
+export { AnimatedUnderline };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { KineticNav } from "../ui/KineticNav";
+import { Header } from "./Header";
 import { Footer } from "./Footer";
 
 const SKIP_TO_CONTENT_ID = "main-content";
@@ -18,8 +18,8 @@ export const Layout: React.FC = () => {
         className="fixed bottom-0 left-0 right-0 h-[12vh] pointer-events-none z-40 backdrop-blur-md bg-background-light/20 dark:bg-background-dark/20"
         aria-hidden
       />
-      <KineticNav />
-      <main id={SKIP_TO_CONTENT_ID} className="grow pt-24" role="main">
+      <Header />
+      <main id={SKIP_TO_CONTENT_ID} className="grow pt-16 md:pt-20" role="main">
         <Outlet />
       </main>
       <Footer />

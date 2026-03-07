@@ -2,7 +2,6 @@ import React from "react";
 import { Section } from "../layout/Section";
 import { Container } from "../layout/Container";
 import { DISPLAY_HEADING_CLASSES } from "../../constants/layout";
-import { AnimatedCircleWord } from "../ui/AnimatedCircleWord";
 import { INFRASTRUCTURE_FEATURES } from "../../config/site";
 import { cn } from "../../lib/utils";
 
@@ -32,14 +31,7 @@ export const CTA: React.FC = () => {
               "text-white text-balance",
             )}
           >
-            <AnimatedCircleWord
-              className="text-white"
-              circleClassName="text-white/70"
-              duration={1.2}
-            >
-              Ready
-            </AnimatedCircleWord>{" "}
-            to cut the noise?
+            Ready to cut the noise?
           </h2>
           <p className="stagger-2 text-xl font-light text-gray-400 max-w-xl">
             Find the product that fits and get started in minutes.
