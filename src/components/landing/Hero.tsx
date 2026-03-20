@@ -33,7 +33,10 @@ export const Hero: React.FC = () => {
       return () => clearTimeout(t);
     }
     if (visibleLine2 === 0) {
-      const pause = setTimeout(() => setVisibleLine2(1), PAUSE_BETWEEN_LINES_MS);
+      const pause = setTimeout(
+        () => setVisibleLine2(1),
+        PAUSE_BETWEEN_LINES_MS,
+      );
       return () => clearTimeout(pause);
     }
     if (visibleLine2 >= HERO_LINE_2.length) {
@@ -58,8 +61,12 @@ export const Hero: React.FC = () => {
           className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] text-primary dark:text-white min-h-[2.4em] flex flex-col items-center"
           aria-live="polite"
         >
-          <span className="block text-balance">{HERO_LINE_1.slice(0, visibleLine1)}</span>
-          <span className="block text-balance">{HERO_LINE_2.slice(0, visibleLine2)}</span>
+          <span className="block text-balance">
+            {HERO_LINE_1.slice(0, visibleLine1)}
+          </span>
+          <span className="block text-balance">
+            {HERO_LINE_2.slice(0, visibleLine2)}
+          </span>
         </h1>
         <div
           className={cn(
@@ -73,12 +80,7 @@ export const Hero: React.FC = () => {
           </p>
 
           <div className="flex justify-center mt-8 md:mt-12 lg:mt-4 w-full">
-            <a
-              href="#products"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(PRIMARY_CTA_CLASSES)}
-            >
+            <a href="#products" className={cn(PRIMARY_CTA_CLASSES)}>
               Explore Products
             </a>
           </div>

@@ -9,6 +9,8 @@ export interface ProductCardItem {
   buttonLabel: string;
   siteUrl: string;
   isMetricAI?: boolean;
+  /** Optional image shown on the right side of this card (gets covered by the slider) */
+  image?: string;
 }
 
 export interface ProductsCardSliderProps {
@@ -158,6 +160,17 @@ function ProductsCardSlider({
           <div className="absolute right-0 top-0 bottom-0 w-[51%] min-w-[51%] h-full">
             <ProductCard product={rightProduct} roundedSide="right" />
           </div>
+          {/* Decorative image on the left side of the AIAdFactory panel — gets covered as slider moves right */}
+          {rightProduct.image && (
+            <div className="absolute left-[6%] bottom-0 top-0 flex items-center pointer-events-none select-none">
+              <img
+                src={rightProduct.image}
+                alt={rightProduct.title}
+                className="h-[62%] w-auto object-contain drop-shadow-2xl rounded-xl"
+                draggable={false}
+              />
+            </div>
+          )}
         </div>
 
         {/* Layer 2 (top): Left card. Wrapper extends past center so no div edge on seam. */}
@@ -168,6 +181,17 @@ function ProductsCardSlider({
           <div className="absolute left-0 top-0 bottom-0 w-[51%] min-w-[51%] h-full">
             <ProductCard product={leftProduct} isMetricAI roundedSide="left" />
           </div>
+          {/* Decorative image on the right side of the MetricAI panel — gets covered as slider moves left */}
+          {leftProduct.image && (
+            <div className="absolute right-[6%] bottom-0 top-0 flex items-center pointer-events-none select-none">
+              <img
+                src={leftProduct.image}
+                alt={leftProduct.title}
+                className="h-[62%] w-auto object-contain drop-shadow-2xl rounded-xl"
+                draggable={false}
+              />
+            </div>
+          )}
         </div>
 
         {/* Cover the clip-path seam so no visible line */}

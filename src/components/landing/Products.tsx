@@ -29,12 +29,14 @@ export const Products: React.FC = () => {
             buttonLabel: metricAI.buttonLabel,
             siteUrl: metricAI.siteUrl,
             isMetricAI: true,
+            image: "/metric.jpeg",
           }}
           rightProduct={{
             title: aiAdFactory.title,
             description: aiAdFactory.description,
             buttonLabel: aiAdFactory.buttonLabel,
             siteUrl: aiAdFactory.siteUrl,
+            image: "/adfactory.jpeg",
           }}
         />
       </Container>
