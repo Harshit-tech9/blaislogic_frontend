@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blaiselogic — AI Infrastructure & Solutions</title>
+
+<style>
+:root {
+  --blue: #4E8DFE;
+  --blue-hover: #3E79E8;
+
+  --bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --surface-2: #F1F5F9;
+  --text: #0B131E;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  --nav-bg: rgba(255,255,255,.88);
+  --inverse: #FFFFFF;
+  --hero-glow: rgba(78,141,254,.10);
+}
+
+html[data-theme="dark"] {
+  --bg: #050810;
+  --surface: #0B131E;
+  --surface-2: #101A29;
+  --text: #E7EDF7;
+  --muted: #8D9AAF;
+  --border: #1C2939;
+  --nav-bg: rgba(5,8,16,.88);
+  --inverse: #FFFFFF;
+  --hero-glow: rgba(78,141,254,.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background .2s ease, color .2s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1320px, calc(100% - 96px));
+  margin: auto;
+}
+
+/* NAV */
+.site-header {
+  height: 76px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  width: 185px;
+  height: 48px;
+}
+
+.brand img {
+  max-width: 175px;
+  max-height: 46px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+html[data-theme="dark"] .brand img {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+}
+
+.logo-fallback {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.6px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.theme-toggle span {
+  font-size: 17px;
+}
+
+.header-cta {
+  height: 42px;
+  border: 0;
+  border-radius: 9px;
+  padding: 0 18px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.header-cta:hover {
+  opacity: .88;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 118px 0 110px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 760px;
+  height: 500px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--hero-glow), transparent 68%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 980px;
+  margin: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.hero h1 {
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -4px;
+  font-weight: 650;
+  margin-bottom: 24px;
+}
+
+.hero h1 span {
+  color: var(--blue);
+}
+
+.hero-copy {
+  max-width: 710px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  height: 49px;
+  padding: 0 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--blue-hover);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* HERO SYSTEM DIAGRAM */
+.hero-system {
+  margin: 70px auto 0;
+  width: min(940px, 100%);
+  min-height: 220px;
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    var(--surface);
+  background-size: 46px 46px;
+  overflow: hidden;
+}
+
+.hero-system::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, var(--surface) 85%);
+  opacity: .65;
+}
+
+.system-node {
+  position: absolute;
+  z-index: 2;
+  width: 190px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--bg);
+  text-align: left;
+  box-shadow: 0 12px 35px rgba(15,23,42,.08);
+}
+
+.system-node strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.system-node span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.node-one { left: 7%; top: 64px; }
+.node-two { left: 50%; top: 30px; transform: translateX(-50%); border-color: rgba(78,141,254,.45); }
+.node-three { right: 7%; top: 64px; }
+
+.system-line {
+  position: absolute;
+  z-index: 1;
+  height: 1px;
+  background: var(--blue);
+  opacity: .45;
+  top: 109px;
+}
+
+.line-one { left: 27%; width: 23%; transform: rotate(-10deg); }
+.line-two { left: 50%; width: 23%; transform: rotate(10deg); transform-origin: left; }
+
+.system-label {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* SECTIONS */
+.section {
+  padding: 105px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 52px;
+}
+
+.section-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.kicker {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+.section h2 {
+  font-size: clamp(36px, 4vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -2.4px;
+  margin-bottom: 16px;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* CAPABILITIES */
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.capability {
+  min-height: 235px;
+  padding: 30px;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.capability:last-child {
+  border-right: 0;
+}
+
+.cap-number {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 62px;
+}
+
+.capability h3 {
+  font-size: 17px;
+  margin-bottom: 9px;
+}
+
+.capability p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+}
+
+.product {
+  min-height: 390px;
+  padding: 34px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.product:last-child {
+  border-right: 0;
+}
+
+.product.featured {
+  background: var(--surface);
+}
+
+.product-number {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  margin-bottom: 70px;
+}
+
+.product h3 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.product p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.product-link {
+  margin-top: auto;
+  padding-top: 28px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+/* SOLUTIONS */
+.solution-layout {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.solution-intro p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.solution-list {
+  border-top: 1px solid var(--border);
+}
+
+.solution-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 24px;
+  gap: 18px;
+  align-items: start;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.solution-row .num {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.solution-row h3 {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.solution-row p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.solution-arrow {
+  color: var(--blue);
+  font-size: 18px;
+}
+
+/* WHY */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.why-card {
+  padding: 30px;
+  min-height: 240px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+}
+
+.why-card .icon {
+  color: var(--blue);
+  font-size: 20px;
+  margin-bottom: 45px;
+}
+
+.why-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* CTA */
+.cta {
+  padding: 100px 0;
+}
+
+.cta-box {
+  border-radius: 20px;
+  padding: 72px;
+  color: white;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(78,141,254,.22), transparent 32%),
+    linear-gradient(120deg, #0B131E, #111E34);
+  border: 1px solid #20314B;
+}
+
+.cta-box h2 {
+  max-width: 720px;
+  font-size: clamp(38px, 4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -2.2px;
+  margin-bottom: 16px;
+}
+
+.cta-box p {
+  max-width: 650px;
+  color: #AAB6C8;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+.cta-box .btn-secondary {
+  background: transparent;
+  border-color: #34445D;
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 65px 0 28px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 55px;
+  padding-bottom: 55px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-brand img {
+  width: 145px;
+  max-height: 40px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+html[data-theme="dark"] .footer-brand img {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+}
+
+.footer-desc {
+  color: var(--muted);
+  max-width: 330px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-col h4 {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.footer-col a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #27C68A;
+}
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+  .container { width: min(100% - 40px, 700px); }
+  .nav { display: none; }
+  .capability-grid,
+  .products,
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .capability:nth-child(2) { border-right: 0; }
+  .capability:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .products .product:nth-child(2) { border-right: 0; }
+  .products .product { border-bottom: 1px solid var(--border); }
+  .products .product:last-child { border-bottom: 0; }
+  .solution-layout { grid-template-columns: 1fr; gap: 45px; }
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+}
+
+@media (max-width: 620px) {
+  .container { width: calc(100% - 28px); }
+  .site-header { height: 68px; }
+  .brand { width: 140px; }
+  .brand img { max-width: 135px; }
+  .header-cta { padding: 0 12px; }
+  .hero { padding: 85px 0 75px; }
+  .hero h1 { font-size: 43px; letter-spacing: -2.5px; }
+  .hero-copy { font-size: 15px; }
+  .hero-actions { flex-direction: column; }
+  .btn { width: 100%; }
+  .hero-system { min-height: 360px; }
+  .system-node { width: 155px; }
+  .node-one { left: 4%; top: 40px; }
+  .node-two { top: 145px; }
+  .node-three { right: 4%; top: 250px; }
+  .system-line { display: none; }
+  .section { padding: 75px 0; }
+  .capability-grid,
+  .products,
+  .why-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .capability,
+  .product {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--border);
+  }
+  .capability:last-child,
+  .product:last-child {
+    border-bottom: 0;
+  }
+  .cta-box { padding: 42px 25px; }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.brand img {
+  mix-blend-mode: var(--logo-blend, normal);
+  filter: var(--logo-filter, none);
+}
+
+/* MODAL STYLES */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(600px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.modal::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-header h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.modal-header p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-btn {
+  width: 100%;
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.modal-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.modal-response-time {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.success-state {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-state h2 {
+  margin-bottom: 10px;
+}
+
+.success-state p {
+  color: var(--muted);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.success-state .btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 24px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#">
+    <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic">
+  </a>
+
+  <nav class="nav">
+    <a href="#products">Products</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#company">Company</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">☼</span>
+    </button>
+    <button class="header-cta" onclick="openModal()">Talk to us →</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> AI infrastructure & solutions</div>
+
+    <h1>
+      AI infrastructure for<br>
+      <span>real-world intelligence.</span>
+    </h1>
+
+    <p class="hero-copy">
+      Measure AI performance. Generate real outcomes. Build systems that solve real problems. Blaiselogic provides the foundational grid for the next generation of AI.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="window.location.href='#products'">Explore Products</button>
+      <button class="btn btn-secondary" onclick="openModal()">Talk to Blaiselogic</button>
+    </div>
+
+    <div class="hero-system">
+      <div class="system-node node-one">
+        <strong>Infrastructure</strong>
+        <span>Reliable foundations for AI workloads</span>
+      </div>
+
+      <div class="system-node node-two">
+        <strong>AI Products</strong>
+        <span>Products such as MetricAI and AIAdeFactory</span>
+      </div>
+
+      <div class="system-node node-three">
+        <strong>Custom Solutions</strong>
+        <span>Systems designed around specific business needs</span>
+      </div>
+
+      <div class="system-line line-one"></div>
+      <div class="system-line line-two"></div>
+      <div class="system-label">One technology partner across the stack</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="capabilities">
+  <div class="container">
+    <div class="section-head center">
+      <div class="kicker">▦</div>
+      <h2>Intelligence needs structure.</h2>
+      <p>
+        We believe that true intelligence is not just about raw power, but about the architecture that sustains it. Blaiselogic provides the foundational grid upon which the next generation of AI is built. Precision, reliability, and meaningful output are not just goals; they are the baseline.
+      </p>
+    </div>
+
+    <div class="capability-grid">
+      <article class="capability">
+        <div class="cap-number">01</div>
+        <h3>AI infrastructure</h3>
+        <p>Build reliable foundations for AI systems, integrations, and production workloads.</p>
+      </article>
+
+      <article class="capability">
+        <div class="cap-number">02</div>
+        <h3>AI products</h3>
+        <p>Purpose-built products that solve real, repeatable problems.</p>
+      </article>
+
+      <article class="capability">
+        <div class="cap-number">03</div>
+        <h3>Custom solutions</h3>
+        <p>Design and build practical AI systems around real business requirements.</p>
+      </article>
+
+      <article class="capability">
+        <div class="cap-number">04</div>
+        <h3>Engineering partnership</h3>
+        <p>From architecture and prototyping through deployment and iteration.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">INFRASTRUCTURE COMPONENTS</div>
+    </div>
+
+    <div class="products">
+
+      <article class="product featured" onclick="window.open('https://metricai.co.in/', '_blank')" style="cursor: pointer;">
+        <div class="product-number">01 / PRODUCT</div>
+        <h3>MetricAI</h3>
+        <p>
+          Track AI usage and performance across providers. Monitor inputs, outputs, latency, and cost in real time with clear, actionable visibility.
+        </p>
+        <a class="product-link" href="https://metricai.co.in/" target="_blank">Explore MetricAI ↗</a>
+      </article>
+
+      <article class="product">
+        <div class="product-number">02 / PRODUCT</div>
+        <h3>AIAdeFactory</h3>
+        <p>
+          Generate high-quality ads directly from WhatsApp. Chat with AI, answer simple prompts, and receive ready-to-launch campaign content instantly.
+        </p>
+        <a class="product-link" href="#">Visit AIAdeFactory</a>
+      </article>
+
+      <article class="product">
+        <div class="product-number">03 / SERVICE</div>
+        <h3>Solutions</h3>
+        <p>
+          Custom AI systems designed around your needs. We build practical, reliable AI setups that solve real-world problems effectively.
+        </p>
+        <a class="product-link" href="#solutions">Explore Solutions ↗</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="solutions">
+  <div class="container">
+    <div class="solution-layout">
+
+      <div class="solution-intro">
+        <div class="kicker">Solutions</div>
+        <h2>We solve the problem behind the prompt.</h2>
+        <p>
+          Not every AI requirement needs another SaaS subscription.
+          For teams with specific workflows, data, integrations, or
+          operational constraints, we design and build the system itself.
+        </p>
+      </div>
+
+      <div class="solution-list">
+
+        <div class="solution-row">
+          <div class="num">01</div>
+          <div>
+            <h3>AI agents & automation</h3>
+            <p>Agentic workflows that connect models with tools, data, and business processes.</p>
+          </div>
+          <div class="solution-arrow">↗</div>
+        </div>
+
+        <div class="solution-row">
+          <div class="num">02</div>
+          <div>
+            <h3>AI application development</h3>
+            <p>Production-ready AI applications designed around your users and operating model.</p>
+          </div>
+          <div class="solution-arrow">↗</div>
+        </div>
+
+        <div class="solution-row">
+          <div class="num">03</div>
+          <div>
+            <h3>AI infrastructure & integrations</h3>
+            <p>Connect models, APIs, databases, observability, billing, and existing systems.</p>
+          </div>
+          <div class="solution-arrow">↗</div>
+        </div>
+
+        <div class="solution-row">
+          <div class="num">04</div>
+          <div>
+            <h3>Proof of concept to production</h3>
+            <p>Move from an early prototype to a maintainable system with a clear technical foundation.</p>
+          </div>
+          <div class="solution-arrow">↗</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="company">
+  <div class="container">
+
+    <div class="section-head center">
+      <div class="kicker">Why Blaiselogic</div>
+      <h2>Technology depth without the one-size-fits-all pitch.</h2>
+      <p>
+        Whether you need a product or a custom build, the focus stays on
+        useful technology, dependable engineering, and measurable outcomes.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="icon">◈</div>
+        <h3>Product + engineering</h3>
+        <p>We understand both reusable products and the engineering work required when your problem does not fit a template.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="icon">↗</div>
+        <h3>Built for production</h3>
+        <p>Architecture decisions are made with reliability, observability, integrations, and long-term operation in mind.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="icon">◎</div>
+        <h3>Practical AI</h3>
+        <p>We focus on where AI creates actual value rather than adding AI simply because the technology is available.</p>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="cta">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Have an AI problem worth solving?</h2>
+      <p>
+        Tell us what you are trying to build. We can help determine whether
+        an existing product, a custom solution, or a combination of both is
+        the right approach.
+      </p>
+      <button class="btn btn-primary" onclick="openModal()">Start a conversation →</button>
+      <button class="btn btn-secondary" onclick="window.location.href='#products'">Explore our products</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand">
+          <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic">
+        </div>
+        <p class="footer-desc">
+          Technology, AI products, infrastructure, and custom solutions
+          for teams building practical AI systems.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="#products">MetricAI</a>
+        <a href="#products">AIAdeFactory</a>
+        <a href="#products">Solutions</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="#solutions">AI Agents</a>
+        <a href="#solutions">AI Applications</a>
+        <a href="#solutions">Infrastructure</a>
+        <a href="#solutions">Custom Systems</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#company">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Security</a>
+        <a href="#">Status</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Blaiselogic. All rights reserved.</span>
+      <span class="status"><span class="status-dot"></span> all systems operational</span>
+    </div>
+  </div>
+</footer>
+
+
+<div class="modal-overlay" id="contactModalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    
+    <div id="modalFormState">
+      <div class="modal-header">
+        <h2>Talk to Blaiselogic</h2>
+        <p>Let's discuss what you're building and how we can help.</p>
+      </div>
+
+      <form id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Your name" required minlength="2">
+        </div>
+
+        <div class="form-group">
+          <label for="workEmail">Work Email</label>
+          <input type="email" id="workEmail" placeholder="you@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" placeholder="Company name" required minlength="2">
+        </div>
+
+        <div class="form-group">
+          <label for="interest">What can we help with?</label>
+          <select id="interest" required>
+            <option value="" disabled selected>Select an area</option>
+            <option value="AI Infrastructure">AI Infrastructure</option>
+            <option value="AI Observability & Monitoring">AI Observability & Monitoring</option>
+            <option value="AI Cost Management">AI Cost Management</option>
+            <option value="Custom AI Solutions">Custom AI Solutions</option>
+            <option value="Enterprise AI Integration">Enterprise AI Integration</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="requirement">Tell us about your requirement</label>
+          <textarea id="requirement" placeholder="Tell us briefly about your project..." required minlength="20"></textarea>
+        </div>
+
+        <button type="submit" class="modal-btn" id="submitBtn">Send Inquiry →</button>
+        <div class="modal-response-time">Usually responds within 1 day</div>
+      </form>
+    </div>
+
+    <div class="success-state" id="modalSuccessState">
+      <h2>Thanks for reaching out</h2>
+      <p>We've received your inquiry. Our team will review your requirements and get back to you shortly.</p>
+      <div style="color: var(--muted); font-size: 13px; margin-bottom: 25px;"><strong>Expected response:</strong> Within 1 business day</div>
+      <button class="btn btn-secondary" style="border-radius:8px;" onclick="closeModal()">Back to website</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal Logic
+const modalOverlay = document.getElementById('contactModalOverlay');
+const formState = document.getElementById('modalFormState');
+const successState = document.getElementById('modalSuccessState');
+const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+
+function openModal() {
+  modalOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+  // Reset form with a slight delay to allow closing animation
+  setTimeout(() => {
+    formState.style.display = 'block';
+    successState.style.display = 'none';
+    contactForm.reset();
+    submitBtn.textContent = 'Send Inquiry →';
+    submitBtn.disabled = false;
+  }, 300);
+}
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+    closeModal();
+  }
+});
+
+// Close on outside click
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    closeModal();
+  }
+});
+
+// Handle Form Submission
+function handleFormSubmit(e) {
+  e.preventDefault();
+  
+  // Set Loading State
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  // Simulate API Call
+  setTimeout(() => {
+    formState.style.display = 'none';
+    successState.style.display = 'block';
+  }, 1000);
+}
+</script>
+
+<script>
+const root = document.documentElement;
+const toggle = document.getElementById("themeToggle");
+const icon = document.getElementById("themeIcon");
+
+const saved = localStorage.getItem("blaiselogic-theme");
+const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+function setTheme(theme) {
+  root.setAttribute("data-theme", theme);
+  localStorage.setItem("blaiselogic-theme", theme);
+  icon.textContent = theme === "dark" ? "☀" : "☾";
+}
+
+setTheme(saved || (systemDark ? "dark" : "light"));
+
+toggle.addEventListener("click", () => {
+  const current = root.getAttribute("data-theme");
+  setTheme(current === "dark" ? "light" : "dark");
+});
+</script>
+
+</body>
+</html>
