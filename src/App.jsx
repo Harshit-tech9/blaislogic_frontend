@@ -10,7 +10,7 @@ import Footer from './components/Footer'
 import ContactModal from './components/ContactModal'
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false) 
 
   return (
     <>
