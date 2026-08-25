@@ -1,10 +1,14 @@
+const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
+
 export default function Footer({ openModal }) {
   return (
     <footer>
       <div className="wrap">
         <div className="footer-grid">
           <div>
-            <div className="wordmark" style={{marginBottom:'14px'}}><span className="dot"></span>Blaiselogic</div>
+            <a href="#top" style={{display:'inline-block', marginBottom:'14px'}}>
+              <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" style={{maxWidth:'150px', maxHeight:'40px', objectFit:'contain', mixBlendMode:'multiply'}} />
+            </a>
             <p style={{color:'var(--ink-faint)', fontSize:'14.5px', maxWidth:'220px'}}>Make AI work as a business.</p>
           </div>
           <div>
@@ -26,8 +30,8 @@ export default function Footer({ openModal }) {
           <div>
             <h5>Connect</h5>
             <ul>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Email</a></li>
+              <li><a href="https://www.linkedin.com/company/metricai-ai-finops/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+              <li><a href={CALENDAR_URL} target="_blank" rel="noreferrer">Book a call</a></li>
               <li><a href="#">India / Global</a></li>
             </ul>
           </div>

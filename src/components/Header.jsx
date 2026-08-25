@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 
+const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
+
 export default function Header({ openModal }) {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       try {
-        const saved = localStorage.getItem('bl-theme')
+        const saved = localStorage.getItem('blaiselogic-theme')
         if (saved) return saved
       } catch(e) {}
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -16,7 +18,7 @@ export default function Header({ openModal }) {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    try { localStorage.setItem('bl-theme', theme) } catch(e) {}
+    try { localStorage.setItem('blaiselogic-theme', theme) } catch(e) {}
   }, [theme])
 
   useEffect(() => {
@@ -29,13 +31,13 @@ export default function Header({ openModal }) {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
   }, [mobileOpen])
 
-  const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark')
-
   return (
     <>
       <header className={`site${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href="#top" className="wordmark"><span className="dot"></span>Blaiselogic</a>
+          <a href="#top" className="brand">
+            <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
+          </a>
           <nav className="main-nav" aria-label="Primary">
             <a href="#metricai">MetricAI</a>
             <a href="#advisory">Advisory</a>
@@ -44,7 +46,7 @@ export default function Header({ openModal }) {
             <a href="#company">Company</a>
           </nav>
           <div className="nav-right">
-            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
+            <button className="theme-toggle" onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} aria-label="Toggle dark mode">
               {theme === 'dark' ? (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
               ) : (
@@ -52,7 +54,7 @@ export default function Header({ openModal }) {
               )}
             </button>
             <button className="btn btn-ghost btn-sm" onClick={openModal}>Talk to us</button>
-            <button className="btn btn-primary btn-sm" onClick={openModal}>Book a strategy call →</button>
+            <a className="btn btn-primary btn-sm" href={CALENDAR_URL} target="_blank" rel="noreferrer">Book a strategy call →</a>
             <button className="burger" onClick={() => setMobileOpen(true)} aria-label="Open menu"><span></span></button>
           </div>
         </div>
@@ -60,19 +62,21 @@ export default function Header({ openModal }) {
 
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
         <div className="top">
-          <a href="#top" className="wordmark"><span className="dot"></span>Blaiselogic</a>
+          <a href="#top" className="brand" onClick={() => setMobileOpen(false)}>
+            <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
+          </a>
           <button className="close-x" onClick={() => setMobileOpen(false)} aria-label="Close menu">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
         <nav aria-label="Mobile">
-          {['metricai','advisory','systems','insights','company'].map(id => (
-            <a key={id} href={`#${id}`} onClick={() => setMobileOpen(false)} style={{textTransform:'capitalize'}}>{id === 'metricai' ? 'MetricAI' : id.charAt(0).toUpperCase() + id.slice(1)}</a>
+          {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems'],['insights','Insights'],['company','Company']].map(([id,label]) => (
+            <a key={id} href={`#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
           ))}
         </nav>
         <div className="ctas">
           <button className="btn btn-ghost" onClick={() => { setMobileOpen(false); openModal(); }}>Talk to us</button>
-          <button className="btn btn-primary" onClick={() => { setMobileOpen(false); openModal(); }}>Book a strategy call →</button>
+          <a className="btn btn-primary" href={CALENDAR_URL} target="_blank" rel="noreferrer" onClick={() => setMobileOpen(false)}>Book a strategy call →</a>
         </div>
       </div>
     </>

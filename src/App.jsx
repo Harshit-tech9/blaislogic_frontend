@@ -21,10 +21,10 @@ function App() {
         <Hero openModal={() => setIsModalOpen(true)} />
         <PointOfView />
         <Products openModal={() => setIsModalOpen(true)} />
-        <Solutions />
         <UseCases />
         <WhyBlaiselogic />
         <Insights />
+        <Solutions />
         <CTA openModal={() => setIsModalOpen(true)} />
       </main>
       <Footer openModal={() => setIsModalOpen(true)} />

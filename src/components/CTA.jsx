@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 
+const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
+
 export default function CTA({ openModal }) {
   const ref = useRef(null)
   useEffect(() => {
@@ -26,8 +28,8 @@ export default function CTA({ openModal }) {
         <h2>What is stopping your AI initiative from scaling?</h2>
         <p>Whether you are building an AI product, evaluating enterprise use cases or struggling to control AI cost and performance, Blaiselogic will help identify the most valuable next step.</p>
         <div className="ctas">
-          <button className="btn btn-accent" onClick={openModal}>Book a 30-minute strategy call →</button>
-          <button className="btn btn-ghost" onClick={() => scrollTo('#metricai')}>Explore MetricAI →</button>
+          <a className="btn btn-accent" href={CALENDAR_URL} target="_blank" rel="noreferrer">Book a 30-minute strategy call →</a>
+          <a className="btn btn-ghost" href="https://metricai.co.in/" target="_blank" rel="noreferrer">Explore MetricAI →</a>
         </div>
         <div className="pills">
           <span className="pill">Measure AI cost and margin</span>

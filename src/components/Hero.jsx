@@ -32,10 +32,10 @@ export default function Hero({ openModal }) {
         <h1>Turn AI initiatives into <span className="accent">profitable systems.</span></h1>
         <p className="lede">Blaiselogic helps AI-native companies and enterprises measure AI economics, build reliable AI workflows, and move from experimentation to scalable business outcomes.</p>
         <div className="hero-ctas">
-          <button className="btn btn-accent" onClick={() => scrollTo('#metricai')}>
+          <a className="btn btn-accent" href="https://metricai.co.in/" target="_blank" rel="noreferrer">
             Explore MetricAI
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
+          </a>
           <button className="btn btn-ghost" onClick={openModal}>
             Book an AI Economics Assessment
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
