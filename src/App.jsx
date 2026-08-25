@@ -1,29 +1,33 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Capabilities from './components/Capabilities'
+import PointOfView from './components/Capabilities'
 import Products from './components/Products'
 import Solutions from './components/Solutions'
-import Company from './components/Company'
+import UseCases from './components/Company'
+import WhyBlaiselogic from './components/WhyBlaiselogic'
+import Insights from './components/Insights'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import ContactModal from './components/ContactModal'
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false) 
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <>
       <Header openModal={() => setIsModalOpen(true)} />
-      <main>
+      <main id="top">
         <Hero openModal={() => setIsModalOpen(true)} />
-        <Capabilities />
-        <Products />
+        <PointOfView />
+        <Products openModal={() => setIsModalOpen(true)} />
         <Solutions />
-        <Company />
+        <UseCases />
+        <WhyBlaiselogic />
+        <Insights />
         <CTA openModal={() => setIsModalOpen(true)} />
       </main>
-      <Footer />
+      <Footer openModal={() => setIsModalOpen(true)} />
       {isModalOpen && <ContactModal closeModal={() => setIsModalOpen(false)} />}
     </>
   )

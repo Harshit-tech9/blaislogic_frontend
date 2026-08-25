@@ -1,39 +1,55 @@
-export default function Capabilities() {
+import { useEffect, useRef } from 'react'
+
+function useReveal(ref) {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [ref])
+}
+
+export default function PointOfView() {
+  const headRef = useRef(null)
+  const cardsRef = useRef(null)
+  useReveal(headRef)
+  useReveal(cardsRef)
+
   return (
-    <section className="section" id="capabilities">
-      <div className="container">
-        <div className="section-head center">
-          <div className="kicker">▦</div>
-          <h2>Intelligence needs structure.</h2>
-          <p>
-            We believe that true intelligence is not just about raw power, but about the architecture that sustains it. Blaiselogic provides the foundational grid upon which the next generation of AI is built. Precision, reliability, and meaningful output are not just goals; they are the baseline.
-          </p>
+    <section className="pov" id="company">
+      <div className="wrap section">
+        <div className="section-head reveal" ref={headRef}>
+          <div className="eyebrow">THE BLAISELOGIC POINT OF VIEW</div>
+          <h2>AI is not a feature. It is an operating system for work.</h2>
+          <p className="lede">The hard part of AI is not generating an answer. It is designing the system around it: the workflow, the economics, the controls, the data, the human handoffs and the metrics that define success.</p>
         </div>
-
-        <div className="capability-grid">
-          <article className="capability">
-            <div className="cap-number">01</div>
-            <h3>AI infrastructure</h3>
-            <p>Build reliable foundations for AI systems, integrations, and production workloads.</p>
-          </article>
-
-          <article className="capability">
-            <div className="cap-number">02</div>
-            <h3>AI products</h3>
-            <p>Purpose-built products that solve real, repeatable problems.</p>
-          </article>
-
-          <article className="capability">
-            <div className="cap-number">03</div>
-            <h3>Custom solutions</h3>
-            <p>Design and build practical AI systems around real business requirements.</p>
-          </article>
-
-          <article className="capability">
-            <div className="cap-number">04</div>
-            <h3>Engineering partnership</h3>
-            <p>From architecture and prototyping through deployment and iteration.</p>
-          </article>
+        <div className="pov-cards reveal-stagger" ref={cardsRef}>
+          <div className="pov-card">
+            <span className="idx">01</span>
+            <h4>Measure the economics</h4>
+            <p>Understand cost, revenue, margin and return at the level of each customer, workflow and outcome.</p>
+          </div>
+          <div className="pov-card">
+            <span className="idx">02</span>
+            <h4>Design for the real workflow</h4>
+            <p>Build AI around the decisions, systems and people that already make the business work.</p>
+          </div>
+          <div className="pov-card">
+            <span className="idx">03</span>
+            <h4>Operate with control</h4>
+            <p>Make performance, quality, reliability and spending visible before they become a problem.</p>
+          </div>
+          <div className="pov-card">
+            <span className="idx">04</span>
+            <h4>Scale what proves value</h4>
+            <p>Move from isolated pilots to repeatable systems with a clear operating model.</p>
+          </div>
         </div>
       </div>
     </section>

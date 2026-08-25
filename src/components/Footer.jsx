@@ -1,45 +1,40 @@
-export default function Footer() {
+export default function Footer({ openModal }) {
   return (
     <footer>
-      <div className="container">
+      <div className="wrap">
         <div className="footer-grid">
           <div>
-            <div className="footer-brand">
-              <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
-            </div>
-            <p className="footer-desc">
-              Technology, AI products, infrastructure, and custom solutions
-              for teams building practical AI systems.
-            </p>
+            <div className="wordmark" style={{marginBottom:'14px'}}><span className="dot"></span>Blaiselogic</div>
+            <p style={{color:'var(--ink-faint)', fontSize:'14.5px', maxWidth:'220px'}}>Make AI work as a business.</p>
           </div>
-
-          <div className="footer-col">
-            <h4>Products</h4>
-            <a href="#products">MetricAI</a>
-            <a href="#products">AIAdeFactory</a>
-            <a href="#products">Solutions</a>
+          <div>
+            <h5>Product</h5>
+            <ul>
+              <li><a href="#metricai">MetricAI</a></li>
+              <li><a href="#advisory">AI Economics Advisory</a></li>
+              <li><a href="#systems">AI Systems Studio</a></li>
+            </ul>
           </div>
-
-          <div className="footer-col">
-            <h4>Solutions</h4>
-            <a href="#solutions">AI Agents</a>
-            <a href="#solutions">AI Applications</a>
-            <a href="#solutions">Infrastructure</a>
-            <a href="#solutions">Custom Systems</a>
+          <div>
+            <h5>Company</h5>
+            <ul>
+              <li><a href="#insights">Insights</a></li>
+              <li><a href="#company">Company</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Contact</a></li>
+            </ul>
           </div>
-
-          <div className="footer-col">
-            <h4>Company</h4>
-            <a href="#company">About</a>
-            <a href="#">Contact</a>
-            <a href="#">Security</a>
-            <a href="#">Status</a>
+          <div>
+            <h5>Connect</h5>
+            <ul>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Email</a></li>
+              <li><a href="#">India / Global</a></li>
+            </ul>
           </div>
         </div>
-
         <div className="footer-bottom">
           <span>© 2026 Blaiselogic. All rights reserved.</span>
-          <span className="status"><span className="status-dot"></span> all systems operational</span>
+          <span className="status-dot"><span className="d"></span>Building measurable AI systems.</span>
         </div>
       </div>
     </footer>
