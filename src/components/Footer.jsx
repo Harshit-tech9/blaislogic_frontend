@@ -7,7 +7,7 @@ export default function Footer({ openModal }) {
         <div className="footer-grid">
           <div>
             <a href="#top" style={{display:'inline-block', marginBottom:'14px'}}>
-              <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" style={{maxWidth:'150px', maxHeight:'40px', objectFit:'contain', mixBlendMode:'multiply'}} />
+              <img src="/assets/Blaiselogic_lbg.png" alt="Blaiselogic" style={{maxWidth:'150px', maxHeight:'40px', objectFit:'contain', mixBlendMode:'multiply'}} />
             </a>
             <p style={{color:'var(--ink-faint)', fontSize:'14.5px', maxWidth:'220px'}}>Make AI work as a business.</p>
           </div>

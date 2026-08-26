@@ -36,7 +36,7 @@ export default function Header({ openModal }) {
       <header className={`site${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
           <a href="#top" className="brand">
-            <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
+            <img src="/assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
           </a>
           <nav className="main-nav" aria-label="Primary">
             <a href="#metricai">MetricAI</a>
@@ -63,7 +63,7 @@ export default function Header({ openModal }) {
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
         <div className="top">
           <a href="#top" className="brand" onClick={() => setMobileOpen(false)}>
-            <img src="assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
+            <img src="/assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
           </a>
           <button className="close-x" onClick={() => setMobileOpen(false)} aria-label="Close menu">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18M6 6l12 12"/></svg>

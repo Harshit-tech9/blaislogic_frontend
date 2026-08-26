@@ -22,8 +22,8 @@ export default function PointOfView() {
   useReveal(cardsRef)
 
   return (
-    <section className="pov" id="company">
-      <div className="wrap section">
+    <section className="pov section" id="company">
+      <div className="wrap">
         <div className="section-head reveal" ref={headRef}>
           <div className="eyebrow">THE BLAISELOGIC POINT OF VIEW</div>
           <h2>AI is not a feature. It is an operating system for work.</h2>
