@@ -12,7 +12,7 @@ function useReveal(ref) {
   }, [ref])
 }
 
-export default function Insights() {
+export default function Insights({ openModal }) {
   const headRef = useRef(null)
   const gridRef = useRef(null)
   useReveal(headRef)
@@ -75,7 +75,7 @@ export default function Insights() {
           </article>
         </div>
         <div style={{marginTop:'40px'}}>
-          <button className="btn btn-ghost">Read Blaiselogic Insights →</button>
+          <button className="btn btn-ghost" onClick={openModal}>Read Blaiselogic Insights →</button>
         </div>
       </div>
     </section>

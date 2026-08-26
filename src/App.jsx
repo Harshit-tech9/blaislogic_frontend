@@ -23,7 +23,7 @@ function App() {
         <Products openModal={() => setIsModalOpen(true)} />
         <UseCases />
         <WhyBlaiselogic />
-        <Insights />
+        <Insights openModal={() => setIsModalOpen(true)} />
         <Solutions />
         <CTA openModal={() => setIsModalOpen(true)} />
       </main>

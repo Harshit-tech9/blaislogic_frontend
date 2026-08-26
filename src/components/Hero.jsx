@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Hero({ openModal }) {
   const mapRef = useRef(null)
   const innerRef = useRef(null)
+  const heroRef = useRef(null)
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 })
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -25,15 +27,23 @@ export default function Hero({ openModal }) {
     return () => clearTimeout(timer)
   }, [])
 
-  const scrollTo = (hash) => {
-    const el = document.querySelector(hash)
-    if (!el) return
-    const top = el.getBoundingClientRect().top + window.pageYOffset - 78
-    window.scrollTo({ top, behavior: 'smooth' })
+  const handleMouseMove = (e) => {
+    if (!heroRef.current) return
+    const rect = heroRef.current.getBoundingClientRect()
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    })
   }
 
   return (
-    <section className="hero">
+    <section 
+      className="hero" 
+      ref={heroRef} 
+      onMouseMove={handleMouseMove} 
+      style={{ '--mouse-x': `${mousePos.x}px`, '--mouse-y': `${mousePos.y}px` }}
+    >
+      <div className="hero-grid-bg"></div>
       <div className="wrap hero-inner reveal-stagger" ref={innerRef}>
         <div className="eyebrow" style={{justifyContent:'center'}}>AI ECONOMICS, SYSTEMS &amp; ENGINEERING</div>
         <h1>Turn AI initiatives into <span className="accent">profitable systems.</span></h1>
