@@ -98,8 +98,8 @@ export default function EngineeringVisualization() {
         <div 
           style={{
             position: 'absolute',
-            left: hoveredNode.x,
-            top: hoveredNode.y - 30, // Node is 36px tall, so center is 0, top edge is -18
+            left: hoveredNode.screenX,
+            top: hoveredNode.screenY - 30 * physicsRef.current?.scale,
             transform: 'translate(-50%, -100%)',
             background: 'rgba(255, 255, 255, 0.95)',
             border: '1px solid var(--line)',

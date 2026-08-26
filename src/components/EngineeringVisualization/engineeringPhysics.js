@@ -30,29 +30,42 @@ export class EngineeringPhysics {
   resize(w, h) {
     this.width = w
     this.height = h
-    this.nodes.forEach(n => {
-      n.baseX = n.normX * w
-      n.baseY = n.normY * h
-    })
+    
+    this.layoutWidth = Math.max(w, 700)
+    this.layoutHeight = Math.max(h, 450)
+    this.scale = Math.min(w / this.layoutWidth, h / this.layoutHeight)
+    this.offsetX = (w - this.layoutWidth * this.scale) / 2
+    this.offsetY = (h - this.layoutHeight * this.scale) / 2
+
+    if (this.nodes) {
+      this.nodes.forEach(n => {
+        n.baseX = n.normX * this.layoutWidth
+        n.baseY = n.normY * this.layoutHeight
+      })
+    }
   }
 
   _initNodes() {
+    this.resize(this.width, this.height)
+
     this.nodes = ENG_NODES.map((n, i) => {
       return {
         ...n,
         normX: n.x,
         normY: n.y,
-        baseX: n.x * this.width,
-        baseY: n.y * this.height,
-        x: n.x * this.width,
-        y: n.y * this.height,
+        baseX: n.x * this.layoutWidth,
+        baseY: n.y * this.layoutHeight,
+        x: n.x * this.layoutWidth,
+        y: n.y * this.layoutHeight,
         vx: 0,
         vy: 0,
         scale: 1,
         phase: Math.random() * Math.PI * 2,
         speed: 0.4 + Math.random() * 0.4,
         opacity: 0,
-        introDelay: i * 0.2
+        introDelay: i * 0.2,
+        screenX: 0,
+        screenY: 0
       }
     })
   }
@@ -106,8 +119,11 @@ export class EngineeringPhysics {
       let targetScale = 1
       
       if (this.mouseX > 0) {
-        const dx = this.mouseX - targetBaseX
-        const dy = this.mouseY - targetBaseY
+        const mappedMouseX = (this.mouseX - this.offsetX) / this.scale
+        const mappedMouseY = (this.mouseY - this.offsetY) / this.scale
+
+        const dx = mappedMouseX - targetBaseX
+        const dy = mappedMouseY - targetBaseY
         const dist = Math.sqrt(dx*dx + dy*dy)
         
         if (dist < interactionRadius) {
@@ -131,6 +147,9 @@ export class EngineeringPhysics {
       node.x += node.vx
       node.y += node.vy
       node.scale += (targetScale - node.scale) * 0.15
+
+      node.screenX = node.x * this.scale + this.offsetX
+      node.screenY = node.y * this.scale + this.offsetY
     })
     
     const closestId = closestNode ? closestNode.id : null
@@ -144,6 +163,9 @@ export class EngineeringPhysics {
 
   draw(ctx) {
     ctx.clearRect(0, 0, this.width, this.height)
+    ctx.save()
+    ctx.translate(this.offsetX, this.offsetY)
+    ctx.scale(this.scale, this.scale)
 
     // Draw connections
     ENG_CONNECTIONS.forEach(conn => {
@@ -158,8 +180,10 @@ export class EngineeringPhysics {
       let midY = (a.y + b.y) / 2
       
       if (this.mouseX > 0) {
-        const dx = this.mouseX - midX
-        const dy = this.mouseY - midY
+        const mappedMouseX = (this.mouseX - this.offsetX) / this.scale
+        const mappedMouseY = (this.mouseY - this.offsetY) / this.scale
+        const dx = mappedMouseX - midX
+        const dy = mappedMouseY - midY
         const dist = Math.sqrt(dx*dx + dy*dy)
         if (dist < 150) {
           const pull = (1 - dist / 150) * 0.1
@@ -258,5 +282,7 @@ export class EngineeringPhysics {
       ctx.fillText('SYSTEM OPERATIONAL', ix - 45, iy + 1)
       ctx.globalAlpha = 1
     }
+    
+    ctx.restore()
   }
 }

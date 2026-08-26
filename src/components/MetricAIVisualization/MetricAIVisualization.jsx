@@ -98,8 +98,8 @@ export default function MetricAIVisualization() {
         <div 
           style={{
             position: 'absolute',
-            left: hoveredNode.x,
-            top: hoveredNode.y - 45,
+            left: hoveredNode.screenX,
+            top: hoveredNode.screenY - 45 * physicsRef.current?.scale,
             transform: 'translate(-50%, -100%)',
             background: 'rgba(255, 255, 255, 0.95)',
             border: '1px solid var(--line)',
