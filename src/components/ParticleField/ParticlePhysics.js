@@ -19,10 +19,10 @@ export class ParticlePhysics {
         originY: Math.random() * this.height,
         vx: 0,
         vy: 0,
-        size: Math.random() * 1.5 + 0.5,
+        size: Math.random() * 1.5 + 1.0, // increased base size
         speedX: (Math.random() - 0.5) * 0.2,
         speedY: (Math.random() - 0.5) * 0.2,
-        opacity: Math.random() * 0.6 + 0.1
+        opacity: Math.random() * 0.5 + 0.4 // increased base opacity
       })
     }
   }
@@ -46,8 +46,8 @@ export class ParticlePhysics {
 
   update(dt) {
     const timeFactor = dt * 0.06
-    const repelRadius = 180
-    const repelForce = 0.6
+    const repelRadius = 260
+    const repelForce = 1.0
 
     this.particles.forEach(p => {
       // Natural slow drift
@@ -73,9 +73,9 @@ export class ParticlePhysics {
         if (distSq < repelRadiusSq) {
           const dist = Math.sqrt(distSq)
           const force = (1 - (dist / repelRadius)) * repelForce
-          // push away
-          forceX = (dx / dist) * force * 150 
-          forceY = (dy / dist) * force * 150
+          // push away stronger
+          forceX = (dx / dist) * force * 250 
+          forceY = (dy / dist) * force * 250
         }
       }
 
@@ -98,7 +98,7 @@ export class ParticlePhysics {
     // Determine if light mode or dark mode for dot color based on a css var if possible,
     // but for now, we'll use a neutral dark gray/blue that works in both, or light blue.
     // The user screenshot showed white/grey dots on black background.
-    ctx.fillStyle = 'rgba(100, 110, 150, 1)'
+    ctx.fillStyle = 'rgba(100, 120, 180, 1)'
 
     this.particles.forEach(p => {
       ctx.globalAlpha = p.opacity
