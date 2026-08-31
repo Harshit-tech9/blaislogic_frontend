@@ -37,8 +37,16 @@ export class EngineeringPhysics {
     this.offsetX = (w - this.layoutWidth * this.scale) / 2
     this.offsetY = (h - this.layoutHeight * this.scale) / 2
 
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth > 900;
+    const spreadMultiplier = isDesktop ? 1.3 : 1.0;
+
     if (this.nodes) {
       this.nodes.forEach(n => {
+        const dx = n.origX - 0.5
+        const dy = n.origY - 0.5
+        n.normX = 0.5 + dx * spreadMultiplier
+        n.normY = 0.5 + dy * spreadMultiplier
+
         n.baseX = n.normX * this.layoutWidth
         n.baseY = n.normY * this.layoutHeight
       })
@@ -46,17 +54,17 @@ export class EngineeringPhysics {
   }
 
   _initNodes() {
-    this.resize(this.width, this.height)
-
     this.nodes = ENG_NODES.map((n, i) => {
       return {
         ...n,
+        origX: n.x,
+        origY: n.y,
         normX: n.x,
         normY: n.y,
-        baseX: n.x * this.layoutWidth,
-        baseY: n.y * this.layoutHeight,
-        x: n.x * this.layoutWidth,
-        y: n.y * this.layoutHeight,
+        baseX: 0,
+        baseY: 0,
+        x: 0,
+        y: 0,
         vx: 0,
         vy: 0,
         scale: 1,
@@ -67,6 +75,13 @@ export class EngineeringPhysics {
         screenX: 0,
         screenY: 0
       }
+    })
+    
+    this.resize(this.width, this.height)
+    
+    this.nodes.forEach(n => {
+      n.x = n.baseX
+      n.y = n.baseY
     })
   }
 
@@ -199,6 +214,9 @@ export class EngineeringPhysics {
       ctx.stroke()
     })
 
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth > 900;
+    const sizeMultiplier = isDesktop ? 1.4 : 1.0;
+
     // Draw pulses
     this.pulses.forEach(p => {
       const a = this.nodes.find(n => n.id === p.conn.from)
@@ -209,7 +227,7 @@ export class EngineeringPhysics {
       const py = a.y + (b.y - a.y) * p.progress
       
       ctx.beginPath()
-      ctx.arc(px, py, 3.5, 0, Math.PI * 2)
+      ctx.arc(px, py, 3.5 * sizeMultiplier, 0, Math.PI * 2)
       ctx.fillStyle = `rgba(36, 80, 255, ${Math.sin(p.progress * Math.PI)})`
       ctx.fill()
     })
@@ -221,9 +239,9 @@ export class EngineeringPhysics {
       ctx.scale(node.scale, node.scale)
       
       const isHovered = this.hoveredNodeId === node.id
-      const width = 110
-      const height = 36
-      const rx = 6
+      const width = 110 * sizeMultiplier
+      const height = 36 * sizeMultiplier
+      const rx = 6 * sizeMultiplier
       const hx = width / 2
       const hy = height / 2
 
@@ -234,25 +252,26 @@ export class EngineeringPhysics {
       ctx.fill()
       
       // Node border
-      ctx.lineWidth = 1.5
+      ctx.lineWidth = 1.5 * sizeMultiplier
       ctx.strokeStyle = isHovered ? `rgba(58, 99, 222, ${node.opacity})` : `rgba(209, 207, 199, ${node.opacity})` // var(--line-strong)
       ctx.stroke()
       
       // Glow when hovered
       if (isHovered) {
         ctx.shadowColor = 'rgba(58, 99, 222, 0.2)'
-        ctx.shadowBlur = 12
+        ctx.shadowBlur = 12 * sizeMultiplier
         ctx.stroke()
         ctx.shadowBlur = 0
       }
 
       // Label
+      const fontSize = 11.5 * sizeMultiplier
       ctx.fillStyle = isHovered ? `rgba(58, 99, 222, ${node.opacity})` : `rgba(13, 17, 23, ${node.opacity})`
-      ctx.font = `600 11.5px 'Outfit', monospace`
+      ctx.font = `600 ${fontSize}px 'Outfit', monospace`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.letterSpacing = '0.08em'
-      ctx.fillText(node.label, 0, 1) // slight manual y offset for optical centering
+      ctx.fillText(node.label, 0, 1 * sizeMultiplier) // slight manual y offset for optical centering
 
       ctx.restore()
     })
@@ -262,24 +281,25 @@ export class EngineeringPhysics {
     if (prodNode && prodNode.opacity > 0.5) {
       const pulse = Math.sin(this.time * 3) * 0.5 + 0.5 // 0 to 1
       const ix = prodNode.x
-      const iy = prodNode.y + 45
+      const iy = prodNode.y + (45 * sizeMultiplier)
       
       ctx.globalAlpha = prodNode.opacity
       ctx.beginPath()
-      ctx.arc(ix - 55, iy, 3.5, 0, Math.PI * 2)
+      ctx.arc(ix - (55 * sizeMultiplier), iy, 3.5 * sizeMultiplier, 0, Math.PI * 2)
       ctx.fillStyle = `rgba(31, 174, 110, ${0.4 + pulse * 0.6})` // var(--green)
       ctx.fill()
       ctx.shadowColor = 'rgba(31, 174, 110, 0.4)'
-      ctx.shadowBlur = pulse * 8
+      ctx.shadowBlur = pulse * 8 * sizeMultiplier
       ctx.fill()
       ctx.shadowBlur = 0
       
       ctx.fillStyle = `rgba(107, 114, 128, 1)` // var(--ink-faint)
-      ctx.font = `500 9.5px 'General Sans', sans-serif`
+      const fontSize = 9.5 * sizeMultiplier
+      ctx.font = `500 ${fontSize}px 'General Sans', sans-serif`
       ctx.textAlign = 'left'
       ctx.textBaseline = 'middle'
       ctx.letterSpacing = '0.05em'
-      ctx.fillText('SYSTEM OPERATIONAL', ix - 45, iy + 1)
+      ctx.fillText('SYSTEM OPERATIONAL', ix - (45 * sizeMultiplier), iy + 1 * sizeMultiplier)
       ctx.globalAlpha = 1
     }
     

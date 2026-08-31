@@ -26,8 +26,16 @@ export class NetworkPhysics {
     this.offsetX = (w - this.layoutWidth * this.scale) / 2
     this.offsetY = (h - this.layoutHeight * this.scale) / 2
 
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth > 900;
+    const spreadMultiplier = isDesktop ? 1.3 : 1.0;
+
     if (this.nodes) {
       this.nodes.forEach(n => {
+        const dx = n.origX - 0.5
+        const dy = n.origY - 0.5
+        n.normX = 0.5 + dx * spreadMultiplier
+        n.normY = 0.5 + dy * spreadMultiplier
+        
         n.baseX = n.normX * this.layoutWidth
         n.baseY = n.normY * this.layoutHeight
       })
@@ -35,18 +43,17 @@ export class NetworkPhysics {
   }
 
   _initNodes() {
-    // initialize scaling first
-    this.resize(this.width, this.height)
-
     this.nodes = METRICAI_NODES.map((n, i) => {
       return {
         ...n,
+        origX: n.x,
+        origY: n.y,
         normX: n.x,
         normY: n.y,
-        baseX: n.x * this.layoutWidth,
-        baseY: n.y * this.layoutHeight,
-        x: n.x * this.layoutWidth,
-        y: n.y * this.layoutHeight,
+        baseX: 0,
+        baseY: 0,
+        x: 0,
+        y: 0,
         vx: 0,
         vy: 0,
         scale: 1,
@@ -57,6 +64,13 @@ export class NetworkPhysics {
         screenX: 0,
         screenY: 0
       }
+    })
+    
+    this.resize(this.width, this.height)
+    
+    this.nodes.forEach(n => {
+      n.x = n.baseX
+      n.y = n.baseY
     })
   }
 
@@ -213,21 +227,25 @@ export class NetworkPhysics {
     })
 
     // Draw nodes
+    // Make nodes significantly larger on desktop screens, while keeping them the same on mobile
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth > 900;
+    const sizeMultiplier = isDesktop ? 1.6 : 1.0;
+
     this.nodes.forEach(node => {
       const isCore = node.category === 'core'
       const isEcon = node.category === 'economics'
-      const r = (isCore ? 16 : isEcon ? 6 : 4.5) * node.scale
+      const r = (isCore ? 16 : isEcon ? 6 : 4.5) * node.scale * sizeMultiplier
 
       if (isCore) {
-        const pulse = Math.sin(this.time * 2) * 2
+        const pulse = Math.sin(this.time * 2) * 2 * sizeMultiplier
         
         // Glow
-        const grd = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 50)
+        const grd = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 50 * sizeMultiplier)
         grd.addColorStop(0, `rgba(36, 80, 255, ${node.opacity * 0.2})`)
         grd.addColorStop(1, 'rgba(36, 80, 255, 0)')
         ctx.fillStyle = grd
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 50, 0, Math.PI * 2)
+        ctx.arc(node.x, node.y, 50 * sizeMultiplier, 0, Math.PI * 2)
         ctx.fill()
         
         ctx.fillStyle = `rgba(36, 80, 255, ${node.opacity})`
@@ -250,11 +268,12 @@ export class NetworkPhysics {
       }
 
       // Label
+      const fontSize = (isCore ? 13 : 11.5) * sizeMultiplier
       ctx.fillStyle = isCore ? `rgba(20, 40, 150, ${node.opacity})` : `rgba(100, 120, 180, ${node.opacity})`
-      ctx.font = isCore ? `600 13px 'Outfit', monospace` : `500 12px 'Outfit', sans-serif`
+      ctx.font = isCore ? `600 ${fontSize}px 'Outfit', monospace` : `500 ${fontSize}px 'Outfit', sans-serif`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText(node.label, node.x, node.y + r + 14)
+      ctx.fillText(node.label, node.x, node.y + r + (12 * sizeMultiplier))
     })
     
     ctx.restore()

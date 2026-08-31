@@ -287,10 +287,8 @@ nav.main-nav a:hover::after{ right:0; }
 .path-content{ display:flex; flex-direction:column; justify-content: center; }
 
 .path-visual{
-  background: var(--bg-alt); border: 1px solid var(--line); border-radius: 16px;
-  min-height: 340px; padding: 48px;
+  height: 500px; width: 100%;
   display:flex; flex-direction:column; justify-content:center; align-items: center;
-  overflow: hidden;
 }
 .path-card.reverse .path-content{ order: 2; }
 .path-card.reverse .path-visual{ order: 1; }
@@ -511,5 +509,5 @@ footer{ padding: 72px 0 32px; border-top:1px solid var(--line); }
   .footer-grid{ grid-template-columns: 1fr 1fr; }
   .path-card{ grid-template-columns: 1fr; gap: 48px; }
   .path-content{ order: 2 !important; }
-  .path-visual{ order: 1 !important; padding: 32px; min-height: 240px; }
+  .path-visual{ order: 1 !important; height: 320px; }
 }
