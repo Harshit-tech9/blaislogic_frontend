@@ -35,15 +35,15 @@ export default function Header({ openModal }) {
     <>
       <header className={`site${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href="#top" className="brand">
+          <a href="/#top" className="brand">
             <img src="/assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
           </a>
           <nav className="main-nav" aria-label="Primary">
-            <a href="#metricai">MetricAI</a>
-            <a href="#advisory">Advisory</a>
-            <a href="#systems">AI Systems</a>
-            <a href="#insights">Insights</a>
-            <a href="#company">Company</a>
+            <a href="/#metricai">MetricAI</a>
+            <a href="/#advisory">Advisory</a>
+            <a href="/#systems">AI Systems</a>
+            <a href="/#insights">Insights</a>
+            <a href="/#company">Company</a>
           </nav>
           <div className="nav-right">
             <button className="theme-toggle" onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} aria-label="Toggle dark mode">
@@ -62,7 +62,7 @@ export default function Header({ openModal }) {
 
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
         <div className="top">
-          <a href="#top" className="brand" onClick={() => setMobileOpen(false)}>
+          <a href="/#top" className="brand" onClick={() => setMobileOpen(false)}>
             <img src="/assets/Blaiselogic_lbg.png" alt="Blaiselogic" />
           </a>
           <button className="close-x" onClick={() => setMobileOpen(false)} aria-label="Close menu">
@@ -71,7 +71,7 @@ export default function Header({ openModal }) {
         </div>
         <nav aria-label="Mobile">
           {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems'],['insights','Insights'],['company','Company']].map(([id,label]) => (
-            <a key={id} href={`#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
+            <a key={id} href={`/#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
           ))}
         </nav>
         <div className="ctas">
