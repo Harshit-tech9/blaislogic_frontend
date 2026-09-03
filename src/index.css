@@ -174,7 +174,7 @@ html[data-theme="dark"] .brand img{
   filter: invert(1) hue-rotate(180deg);
   mix-blend-mode: screen;
 }
-nav.main-nav{ display:flex; align-items:center; gap: 34px; }
+nav.main-nav{ display:flex; align-items:center; gap: 28px; }
 nav.main-nav a{
   font-size: 14.5px; font-weight:500; color: var(--ink-soft);
   position:relative; padding: 4px 0;
@@ -186,6 +186,12 @@ nav.main-nav a::after{
 }
 nav.main-nav a:hover{ color: var(--ink); }
 nav.main-nav a:hover::after{ right:0; }
+nav.main-nav .architect-nav-link{ color: var(--accent); font-weight:650; }
+nav.main-nav .architect-nav-link::before{
+  content:""; display:inline-block; width:6px; height:6px; margin-right:7px;
+  border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft);
+  vertical-align:middle;
+}
 .nav-right{ display:flex; align-items:center; gap:12px; }
 .theme-toggle{
   width:38px; height:38px; border-radius:999px; border:1px solid var(--line-strong);
@@ -298,6 +304,7 @@ nav.main-nav a:hover::after{ right:0; }
 .path-card .sub{ font-size: 15px; color: var(--accent); font-weight:600; margin-bottom:16px; }
 .path-card .copy{ font-size: 14.5px; line-height:1.65; color: var(--ink-soft); margin-bottom: 22px; }
 .path-card .caps{ margin-bottom: 26px; flex-grow:1; }
+.path-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:16px; }
 .path-card .caps li{ font-size: 13.5px; color: var(--ink-soft); padding: 9px 0; border-top:1px solid var(--line); display:flex; gap:10px; }
 .path-card .caps li:first-child{ border-top:none; }
 .path-card .caps li::before{ content:"→"; color: var(--accent); flex-shrink:0; font-family:var(--font-mono); }

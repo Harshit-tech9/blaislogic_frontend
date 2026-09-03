@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ARCHITECT_APP_URL } from '../lib/architectAppUrl'
 
 const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
 
@@ -42,6 +43,7 @@ export default function Header({ openModal }) {
             <a href="/#metricai">MetricAI</a>
             <a href="/#advisory">Advisory</a>
             <a href="/#systems">AI Systems</a>
+            <a className="architect-nav-link" href={ARCHITECT_APP_URL} target="_blank" rel="noreferrer">AI Architect</a>
             <a href="/#insights">Insights</a>
             <a href="/#company">Company</a>
           </nav>
@@ -70,7 +72,11 @@ export default function Header({ openModal }) {
           </button>
         </div>
         <nav aria-label="Mobile">
-          {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems'],['insights','Insights'],['company','Company']].map(([id,label]) => (
+          {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems']].map(([id,label]) => (
+            <a key={id} href={`/#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
+          ))}
+          <a href={ARCHITECT_APP_URL} target="_blank" rel="noreferrer" onClick={() => setMobileOpen(false)}>AI Architect</a>
+          {[['insights','Insights'],['company','Company']].map(([id,label]) => (
             <a key={id} href={`/#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
           ))}
         </nav>

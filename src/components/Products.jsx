@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import MetricAIVisualization from './MetricAIVisualization/MetricAIVisualization'
 import AdvisoryVisualization from './AdvisoryVisualization/AdvisoryVisualization'
 import EngineeringVisualization from './EngineeringVisualization/EngineeringVisualization'
+import { ARCHITECT_APP_URL } from '../lib/architectAppUrl'
 const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
 
 function useReveal(ref) {
@@ -90,10 +91,13 @@ export default function Products({ openModal }) {
                 <li>AI observability, governance and controls</li>
                 <li>Production deployment and iteration</li>
               </ul>
-              <button className="btn btn-ghost" style={{alignSelf:'flex-start', marginTop: '16px'}} onClick={openModal}>
-                Discuss your AI workflow
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              <div className="path-actions">
+                <a className="btn btn-accent" href={ARCHITECT_APP_URL} target="_blank" rel="noreferrer">
+                  Launch AI Architect
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <button className="btn btn-ghost" onClick={openModal}>Discuss your AI workflow</button>
+              </div>
             </div>
             <div className="path-visual" style={{ minHeight: '400px', background: 'transparent', border: 'none', overflow: 'visible' }}>
               <EngineeringVisualization />
