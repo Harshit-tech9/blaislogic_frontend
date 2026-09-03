@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import { ARCHITECT_APP_URL } from '../lib/architectAppUrl'
+import { Link, useLocation } from 'react-router-dom'
 
 const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
 
-export default function Header({ openModal }) {
+export default function Header() {
+  const location = useLocation()
+  const onAssess = location.pathname.startsWith('/assess')
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -43,7 +45,10 @@ export default function Header({ openModal }) {
             <a href="/#metricai">MetricAI</a>
             <a href="/#advisory">Advisory</a>
             <a href="/#systems">AI Systems</a>
-            <a className="architect-nav-link" href={ARCHITECT_APP_URL} target="_blank" rel="noreferrer">AI Architect</a>
+            <Link to="/assess" className={`nav-architect${onAssess ? ' active' : ''}`}>
+              Agent Architect
+              <span className="nav-badge">Live</span>
+            </Link>
             <a href="/#insights">Insights</a>
             <a href="/#company">Company</a>
           </nav>
@@ -55,8 +60,13 @@ export default function Header({ openModal }) {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
               )}
             </button>
-            <button className="btn btn-ghost btn-sm" onClick={openModal}>Talk to us</button>
-            <a className="btn btn-primary btn-sm" href={CALENDAR_URL} target="_blank" rel="noreferrer">Book a strategy call →</a>
+            {!onAssess && (
+              <Link to="/assess" className="btn btn-accent btn-sm nav-architect-cta">
+                Analyse my workflow
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </Link>
+            )}
+            <a className="btn btn-primary btn-sm nav-book" href={CALENDAR_URL} target="_blank" rel="noreferrer">Book a call</a>
             <button className="burger" onClick={() => setMobileOpen(true)} aria-label="Open menu"><span></span></button>
           </div>
         </div>
@@ -72,16 +82,23 @@ export default function Header({ openModal }) {
           </button>
         </div>
         <nav aria-label="Mobile">
-          {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems']].map(([id,label]) => (
-            <a key={id} href={`/#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
-          ))}
-          <a href={ARCHITECT_APP_URL} target="_blank" rel="noreferrer" onClick={() => setMobileOpen(false)}>AI Architect</a>
-          {[['insights','Insights'],['company','Company']].map(([id,label]) => (
+          {!onAssess && (
+            <Link to="/assess" className="mobile-architect-link" onClick={() => setMobileOpen(false)}>
+              Agent Architect
+              <span className="nav-badge">Live</span>
+            </Link>
+          )}
+          {[['metricai','MetricAI'],['advisory','Advisory'],['systems','AI Systems'],['insights','Insights'],['company','Company']].map(([id,label]) => (
             <a key={id} href={`/#${id}`} onClick={() => setMobileOpen(false)}>{label}</a>
           ))}
         </nav>
         <div className="ctas">
-          <button className="btn btn-ghost" onClick={() => { setMobileOpen(false); openModal(); }}>Talk to us</button>
+          {!onAssess && (
+            <Link to="/assess" className="btn btn-accent" onClick={() => setMobileOpen(false)}>
+              Analyse my workflow
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </Link>
+          )}
           <a className="btn btn-primary" href={CALENDAR_URL} target="_blank" rel="noreferrer" onClick={() => setMobileOpen(false)}>Book a strategy call →</a>
         </div>
       </div>

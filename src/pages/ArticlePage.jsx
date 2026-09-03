@@ -4,6 +4,7 @@ import { ARTICLES } from '../data/articles'
 import './ArticlePage.css'
 import Footer from '../components/Footer'
 import ContactModal from '../components/ContactModal'
+import ArticleWorkflowCta from '../components/ArticleWorkflowCta'
 
 function renderSection(section, idx) {
   switch (section.type) {
@@ -176,6 +177,13 @@ export default function ArticlePage() {
 
                 {/* Article sections */}
                 {article.sections.map((section, idx) => renderSection(section, idx))}
+
+                {article.workflowCta && (
+                  <ArticleWorkflowCta
+                    tag={article.tag}
+                    line={article.workflowCta.line}
+                  />
+                )}
 
                 {/* Sources */}
                 {article.sources && article.sources.length > 0 && (

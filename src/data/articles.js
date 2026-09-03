@@ -124,7 +124,7 @@ export const ARTICLES = [
       },
       {
         type: 'text',
-        text: 'Per 1,000 tickets: model and tool cost ~$75. Human handling on 600 escalations: $2,400. Total ~$2,475 to produce 400 accepted AI resolutions. Cost per accepted outcome: ~$6.19 — over 200× the $0.03 per-call figure.',
+        text: 'Per 1,000 tickets: model and tool cost ~$75. Human handling on 600 escalations: $2,400. Total ~$2,475 to produce 400 accepted AI resolutions. Cost per accepted outcome: ~$6.19, over 200× the $0.03 per-call figure.',
       },
       {
         type: 'image',
@@ -141,7 +141,7 @@ export const ARTICLES = [
           'Pick one workflow and define "accepted." Write down the single condition that makes an outcome count.',
           'Instrument runs as traces, not calls. Adopt OpenTelemetry GenAI conventions so every model call, tool call and retrieval step rolls up to a run ID.',
           'Attach a customer or workflow tag to every trace. Without attribution you cannot allocate cost to value.',
-          'Measure your retry and escalation rate. Count attempts per accepted outcome — this is your reliability tax.',
+          'Measure your retry and escalation rate. Count attempts per accepted outcome, this is your reliability tax.',
           'Add tool and human-review cost to the ledger. Include web search, code execution, retrieval and loaded human time.',
           'Compute cost per accepted outcome weekly and track it against cost per call.',
           'Set a per-run cost ceiling so a runaway agent cannot multiply a single query\'s cost.',
@@ -170,6 +170,9 @@ export const ARTICLES = [
       { ref: 'FinOps for AI, FinOps Foundation', url: 'https://www.finops.org/framework/technology-categories/ai/' },
       { ref: 'MIT: State of AI in Business 2025 (via Forbes)', url: 'https://www.forbes.com/sites/jaimecatmull/2025/08/22/mit-says-95-of-enterprise-ai-failsheres-what-the-5-are-doing-right/' },
     ],
+    workflowCta: {
+      line: 'Bring your agent workflow to the Architect, see what each accepted outcome actually costs before you scale.',
+    },
   },
   {
     id: 'usage-not-revenue',
@@ -313,7 +316,7 @@ export const ARTICLES = [
         items: [
           'Define a canonical event schema with immutable IDs, tenant and workflow IDs, timestamps, provider IDs, model/tool dimensions, status, and contract context.',
           'Separate raw activity from billable metrics and pricing configuration so commercial rules can change without re-instrumentation.',
-          'Make ingestion and charge creation idempotent — apply the same discipline as Stripe\'s safe retrying.',
+          'Make ingestion and charge creation idempotent, apply the same discipline as Stripe\'s safe retrying.',
           'Version meters, outcome rules, rate cards, contracts, and invoice calculations.',
           'Test failures, retries, late and duplicate events, time-zone boundaries, partial workflows, credit expiry, refunds, disputes, and payment failure.',
           'Provide usage views and invoice previews.',
@@ -342,6 +345,9 @@ export const ARTICLES = [
       { ref: 'Stripe: Invoice status transitions', url: 'https://docs.stripe.com/invoicing/integration/workflow-transitions' },
       { ref: 'IFRS 15 Revenue from Contracts with Customers', url: 'https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/' },
     ],
+    workflowCta: {
+      line: 'Map one billing workflow from raw AI activity to collected revenue, the Architect will show where usage stops being revenue.',
+    },
   },
   {
     id: 'four-enterprise-metrics',
@@ -350,7 +356,7 @@ export const ARTICLES = [
     subtitle: 'A practical operating model for connecting adoption, quality, cost and realised business value',
     heroImage: '/articles/metrics/Hero.png',
     heroAlt: 'Four connected enterprise AI measurement modules show workflow adoption leading to qualified outcomes, cost per accepted outcome and net value realisation.',
-    cardSummary: 'Most enterprise AI dashboards measure activity: pilots, users, prompts and model spend. This Blaiselogic Research article proposes four decision metrics — Workflow Adoption Rate, Qualified Outcome Rate, Cost per Accepted Outcome and Net Value Realisation — to show whether AI workflows are used, produce acceptable work, operate economically and create benefits that survive full-cost and baseline scrutiny before committing to scale decisions.',
+    cardSummary: 'Most enterprise AI dashboards measure activity: pilots, users, prompts and model spend. This Blaiselogic Research article proposes four decision metrics, Workflow Adoption Rate, Qualified Outcome Rate, Cost per Accepted Outcome and Net Value Realisation, to show whether AI workflows are used, produce acceptable work, operate economically and create benefits that survive full-cost and baseline scrutiny before committing to scale decisions.',
     executiveSummary: [
       'Activity is a leading signal, not proof of value. Pilots, users, prompts and spend do not show whether useful work was completed.',
       'Quality must be defined before scale. An AI output only becomes a business outcome after it passes an agreed completion and quality threshold.',
@@ -377,7 +383,7 @@ export const ARTICLES = [
           {
             type: 'definitions',
             items: [
-              { term: 'Number of pilots', definition: 'Records exploration, not repeatable production. It may lack a stable owner, quality threshold or business baseline. Stanford\'s review of 51 enterprise deployments found that outcomes with similar technologies varied widely and depended on organisational readiness, process and leadership — not simply the model.' },
+              { term: 'Number of pilots', definition: 'Records exploration, not repeatable production. It may lack a stable owner, quality threshold or business baseline. Stanford\'s review of 51 enterprise deployments found that outcomes with similar technologies varied widely and depended on organisational readiness, process and leadership, not simply the model.' },
               { term: 'Number of users', definition: 'A licence or login shows access. "Monthly active user" can combine production use with curiosity or training. Adoption becomes meaningful when the approved workflow is used for its intended work.' },
               { term: 'Number of prompts', definition: 'More prompts may reflect productive use, retries, rework or output that never enters a business process. More exchanges can mean engagement or difficulty obtaining the right answer.' },
               { term: 'Total model spend', definition: 'Spend is an input. It does not reveal what was accepted or whether a higher-cost model created more value.' },
@@ -415,7 +421,7 @@ export const ARTICLES = [
       },
       {
         type: 'callout',
-        text: 'Example: Of 6,400 AI-assisted claims summaries, 5,120 are complete, supported by the source record, compliant with the template and accepted by reviewers. Qualified Outcome Rate is 80%. The remaining 1,280 are not "productivity" — they are review, rework or failure demand.',
+        text: 'Example: Of 6,400 AI-assisted claims summaries, 5,120 are complete, supported by the source record, compliant with the template and accepted by reviewers. Qualified Outcome Rate is 80%. The remaining 1,280 are not "productivity", they are review, rework or failure demand.',
       },
       {
         type: 'heading',
@@ -521,12 +527,15 @@ export const ARTICLES = [
     sources: [
       { ref: 'UK Evaluation Task Force: Guidance on Impact Evaluation of AI Interventions', url: 'https://www.gov.uk/government/publications/the-magenta-book/guidance-on-the-impact-evaluation-of-ai-interventions-html' },
       { ref: 'NIST AI Risk Management Framework', url: 'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf' },
-      { ref: 'ISO/IEC 42001:2023 — AI management systems', url: 'https://www.iso.org/standard/42001' },
+      { ref: 'ISO/IEC 42001:2023, AI management systems', url: 'https://www.iso.org/standard/42001' },
       { ref: 'FinOps Foundation: Unit Economics', url: 'https://www.finops.org/framework/capabilities/unit-economics/' },
       { ref: 'Stanford Digital Economy Lab: The Enterprise AI Playbook', url: 'https://digitaleconomy.stanford.edu/publication/enterprise-ai-playbook/' },
       { ref: 'UK Digital and Data Benefits Framework', url: 'https://www.gov.uk/government/publications/digital-and-data-benefits-framework/digital-and-data-benefits-framework' },
-      { ref: 'Generative AI at Work — Quarterly Journal of Economics', url: 'https://academic.oup.com/qje/article/140/2/889/7990658' },
-      { ref: 'Navigating the Jagged Technological Frontier — Organization Science', url: 'https://doi.org/10.1287/orsc.2025.21838' },
+      { ref: 'Generative AI at Work, Quarterly Journal of Economics', url: 'https://academic.oup.com/qje/article/140/2/889/7990658' },
+      { ref: 'Navigating the Jagged Technological Frontier, Organization Science', url: 'https://doi.org/10.1287/orsc.2025.21838' },
     ],
+    workflowCta: {
+      line: 'Run the four-metric chain on one real workflow, adoption, qualified outcomes, unit cost and net value, scored in one session.',
+    },
   },
 ]

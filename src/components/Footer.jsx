@@ -1,6 +1,6 @@
 const CALENDAR_URL = 'https://calendar.app.google/LsSjs7YWcX5VCKRVA'
 
-export default function Footer({ openModal }) {
+export default function Footer({ openModal = () => {} }) {
   return (
     <footer>
       <div className="wrap">

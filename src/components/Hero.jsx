@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import ParticleField from './ParticleField/ParticleField'
 
 export default function Hero({ openModal }) {
@@ -33,14 +34,26 @@ export default function Hero({ openModal }) {
         <div className="eyebrow" style={{justifyContent:'center'}}>AI ECONOMICS, SYSTEMS &amp; ENGINEERING</div>
         <h1>Turn AI initiatives into <span className="accent">profitable systems.</span></h1>
         <p className="lede">Blaiselogic helps AI-native companies and enterprises measure AI economics, build reliable AI workflows, and move from experimentation to scalable business outcomes.</p>
+
+        <Link to="/assess" className="hero-architect-banner">
+          <span className="hero-architect-pulse" aria-hidden="true" />
+          <span className="hero-architect-copy">
+            <strong>Agentic AI Architect</strong>
+            <span>One workflow in → ranked agent blueprint out. Free, 10 min, no password.</span>
+          </span>
+          <span className="hero-architect-action">
+            Try it now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </Link>
+
         <div className="hero-ctas">
-          <a className="btn btn-accent" href="https://metricai.co.in/" target="_blank" rel="noreferrer">
-            Explore MetricAI
+          <Link to="/assess" className="btn btn-primary hero-architect-btn">
+            Analyse my workflow
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+          </Link>
           <button className="btn btn-ghost" onClick={openModal}>
-            Book an AI Economics Assessment
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            Book an assessment
           </button>
         </div>
       </div>
@@ -59,12 +72,12 @@ export default function Hero({ openModal }) {
             <h3>Advisory</h3>
             <p>Define AI value, ROI and operating models.</p>
           </div>
-          <div className="pillar">
+          <Link to="/assess" className="pillar pillar-architect">
             <span className="num">03</span>
             <div className="pillar-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></div>
-            <h3>Systems Studio</h3>
-            <p>Build and operate production-ready AI workflows.</p>
-          </div>
+            <h3>Agent Architect <span className="pillar-badge">Try live</span></h3>
+            <p>Describe one workflow, get a ranked agent blueprint in 10 minutes.</p>
+          </Link>
         </div>
         <div className="map-caption">One partner from AI strategy to AI operations</div>
       </div>
