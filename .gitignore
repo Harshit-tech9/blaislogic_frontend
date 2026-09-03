@@ -2,5 +2,8 @@ node_modules/
 .npm-cache/
 dist/
 .env
+**/.env
 .netlify/
-project009/
+.venv/
+**/runtime/
+**/runs/
