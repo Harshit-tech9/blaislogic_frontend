@@ -68,12 +68,12 @@ export default function Products({ openModal }) {
                 <li>Executive AI economics dashboard</li>
               </ul>
               <div style={{display:'flex', gap:'12px', flexWrap:'wrap', marginTop: '16px'}}>
-                <a className="btn btn-accent" style={{alignSelf:'flex-start'}} href="/assess">
+                <a className="btn btn-accent" href="/assess">
                   Analyse my workflow
                   <span style={{fontSize:'9px', background:'var(--green)', color:'#06251A', padding:'2px 6px', borderRadius:'4px', marginLeft:'4px', fontFamily:'var(--font-mono)', fontWeight:700}}>NEW</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
-                <button className="btn btn-ghost" style={{alignSelf:'flex-start'}} onClick={openModal}>
+                <button className="btn btn-ghost" onClick={openModal}>
                   Book an AI Economics Assessment
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </button>
@@ -101,11 +101,11 @@ export default function Products({ openModal }) {
                 <li>Downloadable report, no password required</li>
               </ul>
               <div style={{display:'flex', gap:'12px', flexWrap:'wrap', marginTop:'16px'}}>
-                <a className="btn btn-accent" style={{alignSelf:'flex-start'}} href="/assess">
+                <a className="btn btn-accent" href="/assess">
                   Analyse my workflow
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
-                <button className="btn btn-ghost" style={{alignSelf:'flex-start'}} onClick={openModal}>
+                <button className="btn btn-ghost" onClick={openModal}>
                   Discuss your AI workflow
                 </button>
               </div>

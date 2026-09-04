@@ -467,7 +467,47 @@
   }
 
   .assess-hero {
-    padding: 64px 0 72px;
+    padding: 88px 0 40px;
+  }
+
+  .assess-hero-intro h1 {
+    font-size: clamp(30px, 9vw, 52px);
+  }
+
+  .assess-meta {
+    justify-content: center;
+  }
+
+  .assess-meta > div {
+    padding-right: 20px;
+    margin-right: 20px;
+    margin-bottom: 12px;
+  }
+
+  .assess-session-section {
+    padding: 28px 0 48px;
+  }
+
+  .assess-session-section .wrap {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .assess-session-section .architect-app {
+    min-height: auto;
+    border-radius: 10px;
+  }
+
+  .assess-journey {
+    padding: 64px 0 88px;
+  }
+
+  .assess-journey-inner {
+    max-width: 100%;
+  }
+
+  .assess-timeline {
+    max-width: 100%;
   }
 }
 
@@ -480,9 +520,57 @@
     padding: 28px 22px 24px;
   }
 
+  .assess-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-top: none;
+    padding-top: 8px;
+  }
+
   .assess-meta > div {
-    padding-right: 24px;
-    margin-right: 24px;
-    margin-bottom: 16px;
+    padding-right: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    border-right: none;
+    text-align: center;
+  }
+
+  .assess-lede {
+    font-size: 15px;
+    padding: 0 4px;
+  }
+
+  .assess-tstep {
+    grid-template-columns: 44px 1fr;
+    padding-bottom: 24px;
+  }
+
+  .assess-tnum {
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .assess-timeline::before,
+  .assess-timeline-progress {
+    left: 21px;
+  }
+
+  .assess-tbody {
+    padding: 4px 0 0 14px;
+  }
+
+  .assess-tbody h3 {
+    font-size: 15px;
+  }
+
+  .assess-journey-cta {
+    flex-direction: column;
+  }
+
+  .assess-journey-cta .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
