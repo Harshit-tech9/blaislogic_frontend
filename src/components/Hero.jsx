@@ -31,7 +31,7 @@ export default function Hero({ openModal }) {
     <section className="hero">
       <ParticleField />
       <div className="wrap hero-inner reveal-stagger" ref={innerRef}>
-        <div className="eyebrow" style={{justifyContent:'center'}}>AI ECONOMICS, SYSTEMS &amp; ENGINEERING</div>
+        <div className="eyebrow">AI ECONOMICS, SYSTEMS &amp; ENGINEERING</div>
         <h1>Turn AI initiatives into <span className="accent">profitable systems.</span></h1>
         <p className="lede">Blaiselogic helps AI-native companies and enterprises measure AI economics, build reliable AI workflows, and move from experimentation to scalable business outcomes.</p>
 

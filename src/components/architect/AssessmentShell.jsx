@@ -40,20 +40,20 @@ export function AssessmentShell({ snapshot, viewedStage, onViewStage, connection
           <span className="architect-brand-dot" />
           <span><strong>Agentic AI Architect</strong><small>BlaiseLogic AI Systems Studio</small></span>
         </Link>
-        <ol ref={stepsRef} className="architect-steps" aria-label="Assessment stages">
+        <ul ref={stepsRef} className="architect-steps" aria-label="Assessment stages">
           {STAGES.map(([id, title, subtitle], index) => {
             const available = index <= currentIndex
             const state = id === viewedStage ? 'current' : index < currentIndex ? 'complete' : ''
             return (
               <li key={id} ref={id === viewedStage ? activeStepRef : null} className={state}>
-                <button disabled={!available} onClick={() => onViewStage(id)} aria-current={id === viewedStage ? 'step' : undefined}>
+                <button type="button" disabled={!available} onClick={() => onViewStage(id)} aria-current={id === viewedStage ? 'step' : undefined}>
                   <span className="architect-step-num">{index < currentIndex ? '✓' : index + 1}</span>
                   <span><strong>{title}</strong><small>{subtitle}</small></span>
                 </button>
               </li>
             )
           })}
-        </ol>
+        </ul>
         <div className="architect-side-foot">
           <div><span>Known spend</span><strong>${cost.toFixed(3)} / ${cap.toFixed(2)}</strong></div>
           <div className="architect-meter"><i style={{ width: `${Math.min(100, cap ? cost / cap * 100 : 0)}%` }} /></div>

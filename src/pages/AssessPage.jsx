@@ -38,7 +38,7 @@ export default function AssessPage() {
         <section className="assess-hero">
           <div className="wrap assess-hero-intro">
             <div className="assess-eyebrow-row">
-              <div className="eyebrow" style={{ marginBottom: 0, justifyContent: 'center' }}>Agent Architect</div>
+              <div className="eyebrow" style={{ marginBottom: 0 }}>Agent Architect</div>
               <span className="assess-live-badge">Live</span>
             </div>
             <h1>
